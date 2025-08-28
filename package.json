@@ -28,10 +28,9 @@
     "dev": "rollup -c -w",
     "clean": "rimraf dist",
     "prepare": "npm run clean && npm run build",
-    "push": "git add . && git commit -m \"chore: build for release\" && git push && git push --tags",
-    "release:patch": "npm run prepare && git add . && git commit -m \"chore: build for release\" && npm version patch && npm publish --access public && git push && git push --tags",
-    "release:minor": "npm run clean && npm run build && git add . && git commit -m \"chore: build for release\" && npm version minor && npm publish --access public && git push && git push --tags",
-    "release:major": "npm run clean && npm run build && git add . && git commit -m \"chore: build for release\" && npm version major && npm publish --access public && git push && git push --tags"
+    "commit": "git add . && git commit -m \"chore: build for release\"",
+    "push": "git push && git push --tags",
+    "patch": "npm run prepare && npm run commit && npm version patch && npm publish --access public && npm run push"
   },
   "keywords": [
     "react",
