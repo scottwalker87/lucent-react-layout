@@ -8,7 +8,7 @@ import { Content } from "#ui/content"
 import { Infobar } from "#ui/infobar"
 import { Footer } from "#ui/footer"
 import { useLayout } from "#lib/context"
-import styles from "#style/lucent.module.css"
+import styles from "#style/layout.module.css"
 
 /**
  * Каркас макета

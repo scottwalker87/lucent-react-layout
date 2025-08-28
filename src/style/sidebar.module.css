@@ -1,6 +1,6 @@
 /* Lucent CSS: Sidebar */
 @import "./common/tokens.css";
-@import "./common/animations.css";
+@import "./common/animation.css";
 
 .sidebar {
   display: flex;

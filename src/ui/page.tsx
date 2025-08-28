@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from "react"
 import type { PageProps } from "#lib/types"
-import styles from "#style/lucent.module.css"
+import styles from "#style/page.module.css"
 
 /**
  * Основная часть макета

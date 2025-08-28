@@ -1,6 +1,6 @@
 /* Lucent CSS: Infobar */
 @import "./common/tokens.css";
-@import "./common/animations.css";
+@import "./common/animation.css";
 
 .infobar {
   width: var(--layout-lucent-infobar-width);

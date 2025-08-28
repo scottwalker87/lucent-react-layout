@@ -10,8 +10,7 @@
       "import": "./dist/index.esm.js",
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    },
-    "./style": "./dist/style/index.css"
+    }
   },
   "files": [
     "dist",
@@ -19,16 +18,20 @@
   ],
   "type": "module",
   "imports": {
-    "#": "./src/*",
-    "#lib": "./src/lib/*",
-    "#ui": "./src/ui/*",
-    "#style": "./src/style/*"
+    "#/*": "./src/*",
+    "#lib/*": "./src/lib/*",
+    "#ui/*": "./src/ui/*",
+    "#style/*": "./src/style/*"
   },
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "clean": "rimraf dist",
-    "prepublish:only": "npm run clean && npm run build"
+    "prepare": "npm run clean && npm run build",
+    "push": "git add . && git commit -m \"chore: build for release\" && git push && git push --tags",
+    "release:patch": "npm run prepare && git add . && git commit -m \"chore: build for release\" && npm version patch && npm publish --access public && git push && git push --tags",
+    "release:minor": "npm run clean && npm run build && git add . && git commit -m \"chore: build for release\" && npm version minor && npm publish --access public && git push && git push --tags",
+    "release:major": "npm run clean && npm run build && git add . && git commit -m \"chore: build for release\" && npm version major && npm publish --access public && git push && git push --tags"
   },
   "keywords": [
     "react",
@@ -50,10 +53,13 @@
     "@types/node": "^24.3.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "postcss-import": "^16.1.1",
     "rimraf": "^5.0.0",
     "rollup": "^4.0.0",
     "rollup-plugin-dts": "^6.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "tslib": "^2.8.1",
     "typescript": "^5.0.0"
   },
   "dependencies": {
