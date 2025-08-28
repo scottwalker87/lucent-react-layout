@@ -1,13 +1,17 @@
 /* Lucent CSS: Tokens */
 
 :root {
-  --layout-lucent-separator-color: var(--color-border);
+  --layout-lucent-background-color: oklch(96.8% 0.007 247.896);
+  --layout-lucent-background-color-soft: oklch(100% 0 0);
+  --layout-lucent-background-color-hard: oklch(92% 0.02 266.42);
+
+  --layout-lucent-separator-color: oklch(92% 0.02 266.42);
   --layout-lucent-animation-change-duration: 0.15s;
   --layout-lucent-animation-inner-change-duration: 1s;
 
   --layout-lucent-header-height: 5rem;
   --layout-lucent-header-gap: 1.5rem;
-  --layout-lucent-header-background-color: var(--color-background-soft);
+  --layout-lucent-header-background-color: var(--layout-lucent-background-color-soft);
   --layout-lucent-header-offset-x: 3rem;
   --layout-lucent-header-offset-y: 0;
 
@@ -16,34 +20,33 @@
 
   --layout-lucent-footer-height: 5rem;
   --layout-lucent-footer-gap: 1.5rem;
-  --layout-lucent-footer-background-color: var(--color-background-hard);
+  --layout-lucent-footer-background-color: var(--layout-lucent-background-color-hard);
   --layout-lucent-footer-offset-x: var(--layout-lucent-header-offset-x);
   --layout-lucent-footer-offset-y: 0;
 
   --layout-lucent-sidebar-width: 16.875rem;
   --layout-lucent-sidebar-offset-x: 1rem;
   --layout-lucent-sidebar-offset-y: 1rem;
-  --layout-lucent-sidebar-background-color: var(--color-background-hard);
+  --layout-lucent-sidebar-background-color: var(--layout-lucent-background-color-hard);
   --layout-lucent-sidebar-header-height: var(--layout-lucent-header-height);
   --layout-lucent-sidebar-footer-height: var(--layout-lucent-footer-height);
-  --layout-lucent-sidebar-footer-background-color: var(--color-gradient-brand);
-  --layout-lucent-sidebar-footer-text-color: var(--color-primary-foreground);
+  --layout-lucent-sidebar-footer-background-color: var(--layout-lucent-background-color-hard);
+  --layout-lucent-sidebar-footer-text-color: var(--layout-lucent-background-color-soft);
   --layout-lucent-sidebar-collapsed-width: 5rem;
-  --layout-lucent-sidebar-collapsed-background-color: var(--color-background);
+  --layout-lucent-sidebar-collapsed-background-color: var(--layout-lucent-background-color-soft);
 
   --layout-lucent-infobar-width: 25rem;
   --layout-lucent-infobar-offset-x: 2rem;
   --layout-lucent-infobar-offset-y: 2rem;
-  --layout-lucent-infobar-background-color: var(--color-background-soft);
+  --layout-lucent-infobar-background-color: var(--layout-lucent-background-color-soft);
   --layout-lucent-infobar-collapsed-width: 5rem;
-  --layout-lucent-infobar-collapsed-background-color: var(--color-background-soft);
+  --layout-lucent-infobar-collapsed-background-color: var(--layout-lucent-background-color-soft);
 }
 
 /* Темная движуха */
 
 [data-theme-mode="dark"] {
-  --layout-lucent-sidebar-collapsed-background-color: var(--color-background-soft);
-  --layout-lucent-header-background-color: var(--color-background-soft);
-  --layout-lucent-footer-background-color: var(--color-background-hard);
-  --layout-lucent-infobar-background-color: var(--color-background-soft);
+  --layout-lucent-background-color: oklch(20.8% 0.042 265.755);
+  --layout-lucent-background-color-soft: oklch(27.9% 0.041 260.031);
+  --layout-lucent-background-color-hard: oklch(12.9% 0.042 264.695);
 }
