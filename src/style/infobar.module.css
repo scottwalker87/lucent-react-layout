@@ -5,7 +5,7 @@
 .infobar {
   width: var(--layout-lucent-infobar-width);
   background-color: var(--layout-lucent-infobar-background-color);
-  box-shadow: var(--layout-lucent-shadow-ghost-md);
+  box-shadow: var(--layout-lucent-infobar-shadow);
   transition: width var(--layout-lucent-animation-change-duration) ease-in-out;
 
   &.hidden {

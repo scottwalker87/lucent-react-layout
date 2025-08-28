@@ -11,10 +11,5 @@
   width: 100vw;
   overflow: hidden;
   background-color: var(--layout-lucent-background-color);
-  color: var(--layout-lucent-color);
-  font-family: var(--layout-lucent-font-family-base);
-  font-size: var(--layout-lucent-text-base);
-  font-weight: var(--layout-lucent-font-weight-normal);
-  line-height: var(--layout-lucent-line-height-normal);
-  letter-spacing: var(--layout-lucent-letter-spacing-normal);
+  color: var(--layout-lucent-foreground-color);
 }

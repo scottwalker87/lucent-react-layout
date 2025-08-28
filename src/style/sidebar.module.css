@@ -11,7 +11,7 @@
   width: var(--layout-lucent-sidebar-width);
   height: 100%;
   overflow: hidden;
-  box-shadow: var(--layout-lucent-shadow-ghost-xl);
+  box-shadow: var(--layout-lucent-sidebar-shadow);
   transition: width var(--layout-lucent-animation-change-duration) ease-in-out;
   /* animation: sidebarExpand var(--layout-lucent-animation-change-duration) ease-in-out forwards; */
 
@@ -27,7 +27,7 @@
 .sidebarHeader {
   height: var(--layout-lucent-sidebar-header-height);
   border-block-end: 0.0625rem solid var(--layout-lucent-separator-color);
-  background-color: var(--color-background-soft);
+  background-color: var(--layout-lucent-sidebar-header-background-color);
 
   /* &.hidden {} */
   /* &.collapsed {} */
@@ -70,7 +70,6 @@
   margin-top: auto;
   height: var(--layout-lucent-sidebar-footer-height);
   background: var(--layout-lucent-sidebar-footer-background-color);
-  color: var(--layout-lucent-sidebar-footer-text-color);
 
   /* &.hidden {} */
   /* &.collapsed {} */
