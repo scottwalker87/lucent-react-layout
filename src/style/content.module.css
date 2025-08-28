@@ -1,0 +1,16 @@
+/* Lucent CSS: Content */
+@import "./common/tokens.css";
+
+.content {
+  flex: 1;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.contentInner {
+  display: flex;
+  flex-direction: column;
+  padding-inline: var(--layout-lucent-content-offset-x);
+  padding-block: var(--layout-lucent-content-offset-y);
+}

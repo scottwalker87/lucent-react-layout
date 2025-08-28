@@ -1,0 +1,30 @@
+/* Lucent CSS: Footer */
+@import "./common/tokens.css";
+
+.footer {
+  height: var(--layout-lucent-footer-height);
+  overflow: hidden;
+  border-block-start: 0.0625rem solid var(--layout-lucent-separator-color);
+  background-color: var(--layout-lucent-footer-background-color);
+  transition: height var(--layout-lucent-animation-change-duration) ease-in-out;
+
+  &.hidden {
+    height: 0;
+  }
+}
+
+.footerInner {
+  display: flex;
+  align-items: center;
+  gap: var(--layout-lucent-footer-gap);
+  padding-inline: var(--layout-lucent-footer-offset-x);
+  padding-block: var(--layout-lucent-footer-offset-y);
+  height: 100%;
+  opacity: 1;
+  transition: opacity var(--layout-lucent-animation-inner-change-duration) ease-in-out;
+
+  &.hidden {
+    opacity: 0;
+    transition: none;
+  }
+}

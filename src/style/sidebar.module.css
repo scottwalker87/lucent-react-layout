@@ -1,0 +1,91 @@
+/* Lucent CSS: Sidebar */
+@import "./common/tokens.css";
+@import "./common/animations.css";
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+  width: var(--layout-lucent-sidebar-width);
+  height: 100%;
+  overflow: hidden;
+  box-shadow: var(--layout-lucent-shadow-ghost-xl);
+  transition: width var(--layout-lucent-animation-change-duration) ease-in-out;
+  /* animation: sidebarExpand var(--layout-lucent-animation-change-duration) ease-in-out forwards; */
+
+  &.hidden {
+    display: none;
+  }
+  &.collapsed {
+    width: var(--layout-lucent-sidebar-collapsed-width);
+    /* animation: sidebarCollapse var(--layout-lucent-animation-change-duration) ease-in-out forwards; */
+  }
+}
+
+.sidebarHeader {
+  height: var(--layout-lucent-sidebar-header-height);
+  border-block-end: 0.0625rem solid var(--layout-lucent-separator-color);
+  background-color: var(--color-background-soft);
+
+  /* &.hidden {} */
+  /* &.collapsed {} */
+}
+
+.sidebarHeaderInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  animation: innerShow var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
+
+  /* &.hidden {} */
+  &.collapsed {
+    animation: innerHide var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
+  }
+}
+
+.sidebarBody {
+  flex-grow: 1;
+
+  /* &.hidden {} */
+  /* &.collapsed {} */
+}
+
+.sidebarBodyInner {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+  animation: innerShow var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
+
+  /* &.hidden {} */
+  &.collapsed {
+    animation: innerHide var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
+  }
+}
+
+.sidebarFooter {
+  margin-top: auto;
+  height: var(--layout-lucent-sidebar-footer-height);
+  background: var(--layout-lucent-sidebar-footer-background-color);
+  color: var(--layout-lucent-sidebar-footer-text-color);
+
+  /* &.hidden {} */
+  /* &.collapsed {} */
+}
+
+.sidebarFooterInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  animation: innerShow var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
+
+  /* &.hidden {} */
+  &.collapsed {
+    animation: innerHide var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
+  }
+}

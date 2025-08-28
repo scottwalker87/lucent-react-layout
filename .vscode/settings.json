@@ -1,0 +1,13 @@
+{
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "files.associations": {
+    "*.css": "css",
+    "*.tsx": "typescriptreact"
+  },
+
+  "cssrem.languages": ["css", "typescriptreact", "typescript"],
+  "cssrem.hover": "always"
+}

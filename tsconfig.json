@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM"],
+    "types": ["node"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./dist",
+    "rootDir": "./",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "#/*": ["src/*"],
+      "#lib/*": ["src/lib/*"],
+      "#ui/*": ["src/ui/*"],
+      "#style/*": ["src/style/*"]
+    }
+  },
+  "include": [
+    "*.ts",
+    "*.tsx",
+    "*.css",
+    "types/**/*",
+    "src/style/**/*",
+    "src/lib/**/*",
+    "src/ui/**/*",
+    "src/index.ts",
+    "src/lucent.tsx",
+    "src/provider.tsx"
+  ],
+  "exclude": ["node_modules", "dist"]
+}

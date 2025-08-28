@@ -1,0 +1,32 @@
+/* Lucent CSS: Infobar */
+@import "./common/tokens.css";
+@import "./common/animations.css";
+
+.infobar {
+  width: var(--layout-lucent-infobar-width);
+  background-color: var(--layout-lucent-infobar-background-color);
+  box-shadow: var(--layout-lucent-shadow-ghost-md);
+  transition: width var(--layout-lucent-animation-change-duration) ease-in-out;
+
+  &.hidden {
+    display: none;
+  }
+  &.collapsed {
+    width: var(--layout-lucent-infobar-collapsed-width);
+  }
+}
+
+.infobarInner {
+  display: flex;
+  flex-direction: column;
+  padding-block: var(--layout-lucent-infobar-offset-y);
+  padding-inline: var(--layout-lucent-infobar-offset-x);
+  height: 100%;
+  opacity: 1;
+  animation: innerShow var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
+
+  /* &.hidden {} */
+  &.collapsed {
+    animation: innerHide var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
+  }
+}

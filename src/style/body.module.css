@@ -1,0 +1,9 @@
+/* Lucent CSS: Body */
+/* @import "./common/tokens.css"; */
+
+.body {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
