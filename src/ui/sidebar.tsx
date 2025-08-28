@@ -2,7 +2,7 @@ import type { FC, ReactNode } from "react"
 import type { SidebarSlots, SidebarSlotProps } from "#lib/types"
 import { cn } from "#lib/utils"
 import { useLayout } from "#lib/context"
-import { Scrollbar } from "#ui/scrollbar"
+// import { Scrollbar } from "#ui/scrollbar"
 import styles from "#style/sidebar.module.css"
 
 /**
@@ -30,9 +30,9 @@ const SidebarBody: FC<SidebarSlotProps> = ({ children, collapsed }): ReactNode =
 
   return (
     <div className={classes}>
-      <Scrollbar>
-        <div className={innerClasses}>{children}</div>
-      </Scrollbar>
+      {/* <Scrollbar> */}
+      <div className={innerClasses}>{children}</div>
+      {/* </Scrollbar> */}
     </div>
   )
 }
