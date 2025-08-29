@@ -3,44 +3,48 @@
 /* Main layout container */
 
 .container {
-  --header-area: "sidebar header header";
-  --body-area: "sidebar body infobar";
-  --footer-area: "sidebar footer footer";
+  --ll-header-area: "sidebar header header";
+  --ll-body-area: "sidebar body infobar";
+  --ll-footer-area: "sidebar footer footer";
 
-  --header-height: 100px;
-  --footer-height: 100px;
-  --sidebar-width: 250px;
-  --sidebar-collapsed-width: 50px;
-  --sidebar-header-height: 100px;
-  --sidebar-footer-height: 100px;
-  --infobar-width: 250px;
-  --infobar-collapsed-width: 50px;
+  --ll-header-height: 50px;
+  --ll-footer-height: 100px;
+  --ll-sidebar-width: 250px;
+  --ll-sidebar-collapsed-width: 50px;
+  --ll-sidebar-header-height: var(--ll-header-height);
+  --ll-sidebar-footer-height: var(--ll-footer-height);
+  --ll-infobar-width: 250px;
+  --ll-infobar-collapsed-width: 50px;
+
+  --ll-transition-grid-duration: 0.15s;
 
   display: grid;
-  grid-template-areas: var(--header-area) var(--body-area) var(--footer-area);
-  grid-template-columns: var(--sidebar-width) 1fr var(--infobar-width);
-  grid-template-rows: var(--header-height) 1fr var(--footer-height);
+  grid-template-areas: var(--ll-header-area) var(--ll-body-area) var(--ll-footer-area);
+  grid-template-columns: var(--ll-sidebar-width) 1fr var(--ll-infobar-width);
+  grid-template-rows: var(--ll-header-height) 1fr var(--ll-footer-height);
   position: fixed;
   inset: 0;
   height: 100vh;
   width: 100vw;
+  transition: grid-template-columns var(--ll-transition-grid-duration) ease-in-out,
+    grid-template-rows var(--ll-transition-grid-duration) ease-in-out;
 
   /* Скрыт сайдбар */
   &[data-sidebar-mode="hidden"] {
-    grid-template-columns: 0px 1fr var(--infobar-width);
+    grid-template-columns: 0px 1fr var(--ll-infobar-width);
   }
   /* Свернут сайдбар */
   &[data-sidebar-mode="collapsed"] {
-    grid-template-columns: var(--sidebar-collapsed-width) 1fr var(--infobar-width);
+    grid-template-columns: var(--ll-sidebar-collapsed-width) 1fr var(--ll-infobar-width);
   }
 
   /* Скрыт инфобар */
   &[data-infobar-mode="hidden"] {
-    grid-template-columns: var(--sidebar-width) 1fr 0px;
+    grid-template-columns: var(--ll-sidebar-width) 1fr 0px;
   }
   /* Свернут инфобар */
   &[data-infobar-mode="collapsed"] {
-    grid-template-columns: var(--sidebar-width) 1fr var(--infobar-collapsed-width);
+    grid-template-columns: var(--ll-sidebar-width) 1fr var(--ll-infobar-collapsed-width);
   }
 
   /* Скрыты сайдбар и инфобар */
@@ -49,21 +53,21 @@
   }
   /* Свернуты сайдбар и инфобар */
   &[data-sidebar-mode="collapsed"]&[data-infobar-mode="collapsed"] {
-    grid-template-columns: var(--sidebar-collapsed-width) 1fr var(--infobar-collapsed-width);
+    grid-template-columns: var(--ll-sidebar-collapsed-width) 1fr var(--ll-infobar-collapsed-width);
   }
 
   /* Скрыт сайдбар и свернут инфобар */
   &[data-sidebar-mode="hidden"]&[data-infobar-mode="collapsed"] {
-    grid-template-columns: 0px 1fr var(--infobar-collapsed-width);
+    grid-template-columns: 0px 1fr var(--ll-infobar-collapsed-width);
   }
   /* Свернут сайдбар и скрыт инфобар */
   &[data-sidebar-mode="collapsed"]&[data-infobar-mode="hidden"] {
-    grid-template-columns: var(--sidebar-collapsed-width) 1fr 0px;
+    grid-template-columns: var(--ll-sidebar-collapsed-width) 1fr 0px;
   }
 
   /* Скрыт заголовок */
   &[data-header-mode="hidden"] {
-    grid-template-rows: 0px 1fr 100px;
+    grid-template-rows: 0px 1fr var(--ll-footer-height);
   }
   /* Скрыты заголовок и футер */
   &[data-header-mode="hidden"]&[data-footer-mode="hidden"] {
@@ -71,7 +75,7 @@
   }
   /* Скрыт футер */
   &[data-footer-mode="hidden"] {
-    grid-template-rows: 100px 1fr 0px;
+    grid-template-rows: var(--ll-header-height) 1fr 0px;
   }
 }
 
@@ -81,11 +85,9 @@
   grid-area: header;
   display: flex;
   align-items: center;
-  width: auto;
-  height: auto;
 
-  &.hidden {
-    display: none;
+  &.hidden > * {
+    opacity: 0;
   }
 }
 
@@ -99,11 +101,9 @@
 
 .infobar {
   grid-area: infobar;
-  width: auto;
-  height: auto;
 
-  &.hidden {
-    display: none;
+  &.hidden > * {
+    opacity: 0;
   }
 }
 
@@ -113,10 +113,8 @@
   grid-area: footer;
   display: flex;
   align-items: center;
-  width: auto;
-  height: auto;
 
-  &.hidden {
-    display: none;
+  &.hidden > * {
+    opacity: 0;
   }
 }
