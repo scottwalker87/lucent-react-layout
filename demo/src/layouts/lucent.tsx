@@ -1,4 +1,4 @@
-// import { type LayoutConfig, Layout, normalizeConfig } from "../../../src/index"
+import { ReactNode } from "react"
 import { Layout, normalizeConfig, type LayoutConfig } from "@scottwalker/lucent"
 import { Sidebar } from "./sidebar"
 import { SidebarVisibleTrigger } from "../ui/sidebar-visible-trigger"
@@ -7,9 +7,9 @@ import { InfobarVisibleTrigger } from "../ui/infobar-visible-trigger"
 import { InfobarCollapseTrigger } from "../ui/infobar-collapse-trigger"
 import { HeaderVisibleTrigger } from "../ui/header-visible-trigger"
 import { FooterVisibleTrigger } from "../ui/footer-visible-trigger"
-import cls from "./lucent.module.css"
+import "./lucent.css"
 
-export const Lucent = () => {
+export const Lucent = ({ children }: { children?: ReactNode }) => {
   const config: LayoutConfig = normalizeConfig({
     modes: {
       theme: "dark",
@@ -33,8 +33,8 @@ export const Lucent = () => {
   })
 
   return (
-    <Layout config={config} className={cls.layout}>
-      <Layout.Header className={cls.header}>
+    <Layout config={config} className="layout">
+      <Layout.Header className="header">
         <SidebarVisibleTrigger />
         <SidebarCollapseTrigger />
         <InfobarVisibleTrigger />
@@ -47,16 +47,10 @@ export const Lucent = () => {
         <Sidebar />
       </Layout.Sidebar>
 
-      <Layout.Content className={cls.content}>
-        <div style={{ height: 500 }}>1</div>
-        <div style={{ height: 500 }}>2</div>
-        <div style={{ height: 500 }}>3</div>
-        <div style={{ height: 500 }}>4</div>
-        <div style={{ height: 500 }}>5</div>
-      </Layout.Content>
-      <Layout.Infobar className={cls.infobar}>Infobar</Layout.Infobar>
+      <Layout.Content className="content scrollable">{children}</Layout.Content>
+      <Layout.Infobar className="infobar">Infobar</Layout.Infobar>
 
-      <Layout.Footer className={cls.footer}>
+      <Layout.Footer className="footer">
         <HeaderVisibleTrigger />
         <div>Footer</div>
       </Layout.Footer>

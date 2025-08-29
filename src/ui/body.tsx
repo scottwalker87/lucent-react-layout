@@ -1,7 +1,7 @@
 import type { FC, ReactNode } from "react"
 import type { PageBodyProps } from "#lib/types"
-import styles from "#style/body.module.css"
 import { useLayout } from "#lib/context"
+import cls from "#style/layout.module.css"
 
 /**
  * Тело макета
@@ -14,7 +14,7 @@ export const Body: FC<PageBodyProps> = ({ children, ...props }): ReactNode => {
   }
 
   return (
-    <div className={styles.body} {...props} style={style}>
+    <div className={cls.body} {...props} style={style}>
       {children}
     </div>
   )

@@ -157,6 +157,20 @@ export type LayoutSizes = {
 }
 
 /**
+ * Рассчитанные размеры элементов макета
+ * @namespace Lucent.LayoutCalculatedSizes
+ */
+export type LayoutCalculatedSizes = {
+  headerHeight: string
+  footerHeight: string
+  sidebarWidth: string
+  sidebarBodyHeight: string
+  infobarWidth: string
+  bodyHeight: string
+  contentHeight: string
+}
+
+/**
  * CSS-классы макета
  * @namespace Lucent.LayoutClassNames
  */
@@ -295,18 +309,18 @@ export type SidebarProviderProps = {
 }
 
 /**
- * Пропсы для макета
- * @namespace Lucent.LayoutProps
+ * Пропсы для контейнера макета
+ * @namespace Lucent.ContainerProps
  */
-export type LayoutProps = ComponentProps<"div"> & {
+export type ContainerProps = ComponentProps<"div"> & {
   children: ReactNode
 }
 
 /**
- * Пропсы для макета сайдбара
- * @namespace Lucent.SidebarLayoutProps
+ * Пропсы для контейнера сайдбара
+ * @namespace Lucent.SidebarContainerProps
  */
-export type SidebarLayoutProps = ComponentProps<"div"> & {
+export type SidebarContainerProps = ComponentProps<"div"> & {
   children: ReactNode
 }
 
@@ -328,6 +342,11 @@ export type SidebarLayoutProps = ComponentProps<"div"> & {
  * @property {function} isSidebarHidden - проверить, является ли сайдбар скрытым
  * @property {function} isInfobarCollapsed - проверить, является ли инфобар свернутым
  * @property {function} isInfobarHidden - проверить, является ли инфобар скрытым
+ *
+ * @property {function} hasHeader - проверить, есть ли шапка
+ * @property {function} hasFooter - проверить, есть ли футер
+ * @property {function} hasSidebar - проверить, есть ли сайдбар
+ * @property {function} hasInfobar - проверить, есть ли инфобар
  *
  * @property {function} toggleThemeMode - переключить режим темы
  * @property {function} toggleHeaderVisibleMode - переключить режим шапки
@@ -357,6 +376,12 @@ export type LayoutApi = {
   isInfobarCollapsed: () => boolean
   isInfobarHidden: () => boolean
 
+  // Проверки наличия видимых слотов макета
+  hasHeader: () => boolean
+  hasFooter: () => boolean
+  hasSidebar: () => boolean
+  hasInfobar: () => boolean
+
   // Переключатели режимов
   toggleThemeMode: () => void
   toggleHeaderVisibleMode: () => void
@@ -377,6 +402,9 @@ export type LayoutApi = {
  *
  * @property {function} setClassName - установить CSS класс сайдбара
  * @property {function} setSlot - установить слот сайдбара
+ *
+ * @property {function} hasHeader - проверить, есть ли шапка
+ * @property {function} hasFooter - проверить, есть ли футер
  */
 export type LayoutSidebarApi = {
   slots: SidebarSlots
@@ -385,6 +413,10 @@ export type LayoutSidebarApi = {
   // Сеттеры
   setSlot: (slot: SidebarSlot, value: ReactNode) => void
   setClassName: (name: keyof SidebarClassNames, value: string) => void
+
+  // Проверки наличия видимых слотов сайдбара
+  hasHeader: () => boolean
+  hasFooter: () => boolean
 }
 
 /**

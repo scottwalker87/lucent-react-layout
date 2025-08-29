@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react"
-import type { LayoutApi, LayoutSidebarApi } from "#lib/types"
+import type { LayoutApi, LayoutCalculatedSizes, LayoutSidebarApi } from "#lib/types"
 
 /**
  * Контекст макета
@@ -40,3 +40,44 @@ export const useLayoutSidebar = (): LayoutSidebarApi => {
 
   return api
 }
+
+/**
+ * Хук для вычисления размеров контента
+ * @namespace Lucent.useSizes
+ */
+// export const useSizes = (): LayoutCalculatedSizes => {
+//   const {
+//     sizes,
+//     isHeaderHidden,
+//     isFooterHidden,
+//     isSidebarHidden,
+//     isSidebarCollapsed,
+//     isInfobarHidden,
+//     isInfobarCollapsed
+//   } = useLayout()
+
+//   const headerHeight = isHeaderHidden() ? "0rem" : sizes.headerHeight ?? "0rem"
+//   const footerHeight = isFooterHidden() ? "0rem" : sizes.footerHeight ?? "0rem"
+//   const sidebarWidth = (() => {
+//     if (isSidebarHidden()) return "0rem"
+//     if (isSidebarCollapsed()) return sizes.sidebarCollapsedWidth ?? "0rem"
+
+//     return sizes.sidebarWidth ?? "0rem"
+//   })()
+//   const infobarWidth = (() => {
+//     if (isInfobarHidden()) return "0rem"
+//     if (isInfobarCollapsed()) return sizes.infobarCollapsedWidth ?? "0rem"
+
+//     return sizes.infobarWidth ?? "0rem"
+//   })()
+
+//   return {
+//     headerHeight,
+//     footerHeight,
+//     sidebarWidth,
+//     infobarWidth,
+//     sidebarBodyHeight: `calc(100vh - ${headerHeight} - ${footerHeight} - ${infobarWidth})`,
+//     bodyHeight: `calc(100vh - ${headerHeight} - ${footerHeight})`,
+//     contentHeight: `calc(100vh - ${headerHeight} - ${footerHeight})`
+//   }
+// }

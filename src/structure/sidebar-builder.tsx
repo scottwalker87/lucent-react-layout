@@ -2,7 +2,7 @@ import type { ReactNode } from "react"
 import type { SidebarBuilderComponent, SidebarBuilderElementProps } from "#lib/types"
 import { SidebarSlot } from "#/structure/sidebar-slot"
 import { SidebarProvider } from "#/structure/sidebar-provider"
-import { SidebarLayout } from "#ui/sidebar/layout"
+import { SidebarContainer } from "#/ui/sidebar/container"
 
 /**
  * Конструктор сайдбара
@@ -11,7 +11,7 @@ import { SidebarLayout } from "#ui/sidebar/layout"
 const SidebarBuilder: SidebarBuilderComponent = ({ children, ...props }) => {
   return (
     <SidebarProvider>
-      <SidebarLayout {...props}>{children}</SidebarLayout>
+      <SidebarContainer {...props}>{children}</SidebarContainer>
     </SidebarProvider>
   )
 }

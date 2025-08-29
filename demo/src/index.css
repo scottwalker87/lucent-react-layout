@@ -3,6 +3,7 @@
 :root {
   --color-background: #f6f5f8;
   --color-background-soft: #ffffff;
+  --color-background-extra-hard: #9187a4;
   --color-background-hard: #eae7f1;
   --color-foreground: #333640;
   --color-foreground-soft: #474c5b;
@@ -26,6 +27,24 @@ body {
   font-style: normal;
   font-size: 1.3rem;
 }
+
 * {
   box-sizing: border-box;
+}
+
+.scrollable {
+  overflow: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-background-extra-hard) transparent;
+  transition: opacity 0.3s ease;
+}
+.scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollable::-webkit-scrollbar-thumb {
+  background: var(--color-background-extra-hard);
+}
+.scrollable::-webkit-scrollbar-thumb:hover {
+  background: var(--color-foreground-extra-soft);
 }

@@ -1,29 +1,22 @@
 import type { FC, ReactNode } from "react"
-import type { SidebarLayoutProps } from "#lib/types"
+import type { SidebarContainerProps } from "#lib/types"
 import { cn } from "#lib/utils"
 import { useLayout, useLayoutSidebar } from "#lib/context"
 import { SidebarHeader } from "./header"
 import { SidebarBody } from "./body"
 import { SidebarFooter } from "./footer"
-import styles from "#style/sidebar.module.css"
+import cls from "#style/sidebar.module.css"
 
 /**
- * Сайдбар макета
- * @namespace Lucent.UI.Sidebar
+ * Контейнер сайдбара
+ * @namespace Lucent.UI.SidebarContainer
  */
-export const SidebarLayout: FC<SidebarLayoutProps> = ({ children, className }): ReactNode => {
+export const SidebarContainer: FC<SidebarContainerProps> = ({ children, className }): ReactNode => {
   const { isSidebarCollapsed, isSidebarHidden, sizes } = useLayout()
   const { slots } = useLayoutSidebar()
   const collapsed = isSidebarCollapsed()
   const hidden = isSidebarHidden()
-  const classes = cn(
-    {
-      [styles.sidebar]: true,
-      [styles.collapsed]: collapsed,
-      [styles.hidden]: hidden
-    },
-    className
-  )
+  const classes = cn(cls.sidebarContainer, collapsed && cls.collapsed, hidden && cls.hidden, className)
   const style = {
     width: collapsed ? sizes.sidebarCollapsedWidth : sizes.sidebarWidth
   }

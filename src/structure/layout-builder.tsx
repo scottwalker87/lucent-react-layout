@@ -1,4 +1,4 @@
-import { Layout } from "#/ui/layout"
+import { Container } from "#ui/container"
 import type { LayoutBuilderComponent } from "#lib/types"
 import { LayoutSlot } from "#/structure/layout-slot"
 import { LayoutProvider } from "#/structure/layout-provider"
@@ -10,7 +10,7 @@ import { LayoutProvider } from "#/structure/layout-provider"
 const LayoutBuilder: LayoutBuilderComponent = ({ config, children, ...props }) => {
   return (
     <LayoutProvider config={config}>
-      <Layout {...props}>{children}</Layout>
+      <Container {...props}>{children}</Container>
     </LayoutProvider>
   )
 }

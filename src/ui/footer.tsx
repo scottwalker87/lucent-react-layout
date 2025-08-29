@@ -2,7 +2,7 @@ import type { FC, ReactNode } from "react"
 import type { PageFooterProps } from "#lib/types"
 import { cn } from "#lib/utils"
 import { useLayout } from "#lib/context"
-import styles from "#style/footer.module.css"
+import cls from "#style/layout.module.css"
 
 /**
  * Футер макета
@@ -11,24 +11,14 @@ import styles from "#style/footer.module.css"
 export const Footer: FC<PageFooterProps> = ({ children }): ReactNode => {
   const { isFooterHidden, sizes, classNames } = useLayout()
   const hidden = isFooterHidden()
-  const classes = cn({
-    [styles.footer]: true,
-    [styles.hidden]: hidden
-  })
-  const innerClasses = cn(
-    {
-      [styles.footerInner]: true,
-      [styles.hidden]: hidden
-    },
-    classNames.footer
-  )
+  const classes = cn(cls.footer, hidden && cls.hidden, classNames.footer)
   const style = {
     height: sizes.footerHeight
   }
 
   return (
     <footer className={classes} style={style}>
-      <div className={innerClasses}>{children}</div>
+      {children}
     </footer>
   )
 }

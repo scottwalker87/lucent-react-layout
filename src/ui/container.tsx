@@ -1,21 +1,22 @@
 import { FC, type ReactNode } from "react"
 import { useLayout } from "#lib/context"
-import type { LayoutProps } from "#lib/types"
+import type { ContainerProps } from "#lib/types"
+import { cn } from "#lib/utils"
 import { Page } from "./page"
 import { Header } from "./header"
 import { Body } from "./body"
 import { Footer } from "./footer"
 import { Infobar } from "./infobar"
 import { Content } from "./content"
-import styles from "#style/layout.module.css"
-import { cn } from "#lib/utils"
+import cls from "#style/layout.module.css"
 
 /**
- * Макет
- * @namespace Lucent.UI.Layout
+ * Контейнер макета
+ * @namespace Lucent.UI.Container
  */
-export const Layout: FC<LayoutProps> = ({ children, className }): ReactNode => {
+export const Container: FC<ContainerProps> = ({ children, className }): ReactNode => {
   const { modes, slots } = useLayout()
+  const classes = cn(cls.container, className)
 
   // Аттрибуты для опредления глобальных стилей
   const modeAttributes = {
@@ -27,7 +28,6 @@ export const Layout: FC<LayoutProps> = ({ children, className }): ReactNode => {
     "data-infobar-visible-mode": modes.infobarVisible,
     "data-infobar-collapsed-mode": modes.infobarCollapsed
   }
-  const classes = cn(styles.layout, className)
 
   return (
     <div className={classes} {...modeAttributes}>

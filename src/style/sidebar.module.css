@@ -1,5 +1,6 @@
 /* Lucent CSS: Sidebar */
-.sidebar {
+
+.sidebarContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -13,42 +14,37 @@
     display: none;
   }
 }
+
+/* Sidebar header */
+
 .sidebarHeader {
-  width: auto;
-  height: auto;
-}
-.sidebarHeaderInner {
   display: flex;
   align-items: center;
   justify-content: center;
   width: auto;
-  height: 100%;
+  height: auto;
 }
+
+/* Sidebar body */
+
 .sidebarBody {
-  flex-grow: 1;
   flex: 1;
+  display: flex;
+  flex-direction: column;
   width: auto;
   height: auto;
   overflow-x: auto;
   overflow-y: auto;
 }
-.sidebarBodyInner {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  width: auto;
-  height: auto;
-}
+
+/* Sidebar footer */
+
 .sidebarFooter {
-  margin-top: auto;
-  width: auto;
-  height: auto;
-}
-.sidebarFooterInner {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: auto;
   width: auto;
-  height: 100%;
+  height: auto;
 }

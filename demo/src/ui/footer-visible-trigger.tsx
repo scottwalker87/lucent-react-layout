@@ -1,4 +1,4 @@
-import { useLayout } from "../../../src/index"
+import { useLayout } from "@scottwalker/lucent"
 import { PanelBottomClose, PanelBottomOpen } from "lucide-react"
 import { Button } from "./button"
 
