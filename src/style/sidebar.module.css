@@ -1,45 +1,29 @@
 /* Lucent CSS: Sidebar */
-@import "./common/tokens.css";
-@import "./common/animation.css";
-
 .sidebar {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  z-index: 10;
+  z-index: 20;
   width: auto;
   height: 100%;
   overflow: hidden;
-  transition: width var(--layout-lucent-animation-change-duration) ease-in-out;
 
   &.hidden {
     display: none;
   }
 }
-
 .sidebarHeader {
   width: auto;
   height: auto;
-
-  /* &.hidden {} */
-  /* &.collapsed {} */
 }
-
 .sidebarHeaderInner {
   display: flex;
   align-items: center;
   justify-content: center;
   width: auto;
   height: 100%;
-  animation: innerShow var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
-
-  /* &.hidden {} */
-  &.collapsed {
-    animation: innerHide var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
-  }
 }
-
 .sidebarBody {
   flex-grow: 1;
   flex: 1;
@@ -47,34 +31,19 @@
   height: auto;
   overflow-x: auto;
   overflow-y: auto;
-
-  /* &.hidden {} */
-  /* &.collapsed {} */
 }
-
 .sidebarBodyInner {
   flex: 1;
   display: flex;
   flex-direction: column;
   width: auto;
   height: auto;
-  animation: innerShow var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
-
-  /* &.hidden {} */
-  &.collapsed {
-    animation: innerHide var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
-  }
 }
-
 .sidebarFooter {
   margin-top: auto;
   width: auto;
   height: auto;
-
-  /* &.hidden {} */
-  /* &.collapsed {} */
 }
-
 .sidebarFooterInner {
   display: flex;
   flex-direction: column;
@@ -82,10 +51,4 @@
   justify-content: center;
   width: auto;
   height: 100%;
-  animation: innerShow var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
-
-  /* &.hidden {} */
-  &.collapsed {
-    animation: innerHide var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
-  }
 }

@@ -2,7 +2,6 @@ import type { FC, ReactNode } from "react"
 import { cn } from "#lib/utils"
 import type { SidebarBodyProps } from "#lib/types"
 import { useLayout, useLayoutSidebar } from "#lib/context"
-import { Scrollbar } from "#ui/scrollbar"
 import styles from "#style/sidebar.module.css"
 
 /**
@@ -29,9 +28,7 @@ export const SidebarBody: FC<SidebarBodyProps> = ({ children, collapsed }): Reac
 
   return (
     <div className={classes} style={style}>
-      {/* <Scrollbar> */}
       <div className={innerClasses}>{children}</div>
-      {/* </Scrollbar> */}
     </div>
   )
 }

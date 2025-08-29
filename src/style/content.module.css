@@ -1,5 +1,4 @@
 /* Lucent CSS: Content */
-
 .content {
   flex: 1;
   width: auto;
@@ -7,7 +6,6 @@
   overflow-x: auto;
   overflow-y: auto;
 }
-
 .contentInner {
   display: flex;
   flex-direction: column;

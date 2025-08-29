@@ -1,52 +1,5 @@
 /* Lucent CSS: Layout */
-@import "./common/tokens.css";
-
-/* Layout */
-
 .layout {
-  --layout-lucent-background-color: oklch(96.8% 0.007 247.896);
-  --layout-lucent-background-color-soft: oklch(100% 0 0);
-  --layout-lucent-background-color-hard: oklch(92% 0.02 266.42);
-  --layout-lucent-foreground-color: oklch(20.8% 0.042 265.755);
-
-  --layout-lucent-separator-color: oklch(92% 0.02 266.42);
-  --layout-lucent-animation-change-duration: 0.15s;
-  --layout-lucent-animation-inner-change-duration: 1s;
-
-  --layout-lucent-header-height: 5rem;
-  --layout-lucent-header-gap: 1.5rem;
-  --layout-lucent-header-background-color: var(--layout-lucent-background-color-soft);
-  --layout-lucent-header-offset-x: 3rem;
-  --layout-lucent-header-offset-y: 0;
-
-  --layout-lucent-content-offset-x: 5rem;
-  --layout-lucent-content-offset-y: 3.5rem;
-
-  --layout-lucent-footer-height: 5rem;
-  --layout-lucent-footer-gap: 1.5rem;
-  --layout-lucent-footer-background-color: var(--layout-lucent-background-color-hard);
-  --layout-lucent-footer-offset-x: var(--layout-lucent-header-offset-x);
-  --layout-lucent-footer-offset-y: 0;
-
-  --layout-lucent-sidebar-width: 16.875rem;
-  --layout-lucent-sidebar-background-color: var(--layout-lucent-background-color);
-  --layout-lucent-sidebar-header-height: var(--layout-lucent-header-height);
-  --layout-lucent-sidebar-header-background-color: var(--layout-lucent-background-color-soft);
-  --layout-lucent-sidebar-footer-height: var(--layout-lucent-footer-height);
-  --layout-lucent-sidebar-footer-background-color: var(--layout-lucent-background-color-hard);
-  --layout-lucent-sidebar-collapsed-width: 5rem;
-  --layout-lucent-sidebar-collapsed-background-color: var(--layout-lucent-background-color-soft);
-
-  --layout-lucent-infobar-width: 25rem;
-  --layout-lucent-infobar-offset-x: 2rem;
-  --layout-lucent-infobar-offset-y: 2rem;
-  --layout-lucent-infobar-background-color: var(--layout-lucent-background-color-soft);
-  --layout-lucent-infobar-collapsed-width: 5rem;
-  --layout-lucent-infobar-collapsed-background-color: var(--layout-lucent-background-color-soft);
-
-  --layout-lucent-sidebar-shadow: 0.625rem 0.625rem 1.5rem 0 rgba(0, 0, 0, 0.1);
-  --layout-lucent-infobar-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.1);
-
   position: fixed;
   inset: 0;
   display: flex;

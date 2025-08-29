@@ -77,13 +77,6 @@ export const LayoutProvider: FC<LayoutProviderProps> = ({ children, config }): R
   const isInfobarCollapsed = () => modes.infobarCollapsed === INFOBAR_MODE_COLLAPSED
   const isInfobarHidden = () => modes.infobarVisible === INFOBAR_MODE_HIDDEN
 
-  // Проверки наличия слотов макета
-  const hasSidebar = () => !!slots.sidebar && Object.values(slots.sidebar).some(Boolean)
-  const hasHeader = () => !!slots.header
-  const hasContent = () => !!slots.content
-  const hasInfobar = () => !!slots.infobar
-  const hasFooter = () => !!slots.footer
-
   // Переключатели режимов макета
   const toggleThemeMode = () => setMode("theme", isThemeDark() ? THEME_MODE_LIGHT : THEME_MODE_DARK)
   const toggleHeaderVisibleMode = () => {
@@ -115,12 +108,6 @@ export const LayoutProvider: FC<LayoutProviderProps> = ({ children, config }): R
     setMode,
     setSlot,
     setClassName,
-
-    hasSidebar,
-    hasHeader,
-    hasContent,
-    hasInfobar,
-    hasFooter,
 
     isThemeDark,
     isHeaderHidden,

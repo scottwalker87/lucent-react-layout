@@ -1,28 +1,17 @@
 /* Lucent CSS: Header */
-
 .header {
   position: relative;
   z-index: 10;
   width: auto;
   height: auto;
-  overflow: hidden;
-  transition: height var(--layout-lucent-animation-change-duration) ease-in-out;
 
   &.hidden {
-    height: 0;
+    display: none;
   }
 }
-
 .headerInner {
   display: flex;
   align-items: center;
   width: 100%;
   height: 100%;
-  opacity: 1;
-  transition: opacity var(--layout-lucent-animation-inner-change-duration) ease-in-out;
-
-  &.hidden {
-    opacity: 0;
-    transition: none;
-  }
 }

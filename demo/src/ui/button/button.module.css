@@ -1,0 +1,21 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  /* padding: 0.5rem; */
+  border: none;
+  background: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  /* border: 0.0825rem solid var(--color-foreground-soft); */
+  color: var(--color-foreground-soft);
+  background: var(--color-background-soft);
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+    color: var(--color-primary);
+  }
+}

@@ -9,7 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@scottwalker/lucent": "file:../",
+    "@scottwalker/lucent": "^1.0.5",
+    "lucide-react": "^0.542.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-scrollbars-custom": "^4.1.1"

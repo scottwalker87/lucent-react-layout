@@ -1,6 +1,5 @@
 import type { ReactNode } from "react"
 import type { ContentProps } from "#lib/types"
-import { Scrollbar } from "#ui/scrollbar"
 import styles from "#style/content.module.css"
 import { useLayout } from "#lib/context"
 import { cn } from "#/lib/utils"
@@ -15,9 +14,7 @@ export const Content = ({ children }: ContentProps): ReactNode => {
 
   return (
     <main className={styles.content}>
-      {/* <Scrollbar> */}
       <div className={innerClasses}>{children}</div>
-      {/* </Scrollbar> */}
     </main>
   )
 }

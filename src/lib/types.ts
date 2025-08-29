@@ -329,12 +329,6 @@ export type SidebarLayoutProps = ComponentProps<"div"> & {
  * @property {function} isInfobarCollapsed - проверить, является ли инфобар свернутым
  * @property {function} isInfobarHidden - проверить, является ли инфобар скрытым
  *
- * @property {function} hasSidebar - проверить, есть ли сайдбар
- * @property {function} hasHeader - проверить, есть ли шапка
- * @property {function} hasContent - проверить, есть ли контент
- * @property {function} hasInfobar - проверить, есть ли инфобар
- * @property {function} hasFooter - проверить, есть ли футер
- *
  * @property {function} toggleThemeMode - переключить режим темы
  * @property {function} toggleHeaderVisibleMode - переключить режим шапки
  * @property {function} toggleFooterVisibleMode - переключить режим футера
@@ -363,13 +357,6 @@ export type LayoutApi = {
   isInfobarCollapsed: () => boolean
   isInfobarHidden: () => boolean
 
-  // Проверки наличия слотов
-  hasSidebar: () => boolean
-  hasHeader: () => boolean
-  hasContent: () => boolean
-  hasInfobar: () => boolean
-  hasFooter: () => boolean
-
   // Переключатели режимов
   toggleThemeMode: () => void
   toggleHeaderVisibleMode: () => void
@@ -390,10 +377,6 @@ export type LayoutApi = {
  *
  * @property {function} setClassName - установить CSS класс сайдбара
  * @property {function} setSlot - установить слот сайдбара
- *
- * @property {function} hasHeader - проверить, есть ли шапка сайдбара
- * @property {function} hasBody - проверить, есть ли тело сайдбара
- * @property {function} hasFooter - проверить, есть ли футер сайдбара
  */
 export type LayoutSidebarApi = {
   slots: SidebarSlots
@@ -402,11 +385,6 @@ export type LayoutSidebarApi = {
   // Сеттеры
   setSlot: (slot: SidebarSlot, value: ReactNode) => void
   setClassName: (name: keyof SidebarClassNames, value: string) => void
-
-  // Проверки наличия слотов
-  hasHeader: () => boolean
-  hasBody: () => boolean
-  hasFooter: () => boolean
 }
 
 /**

@@ -36,20 +36,12 @@ export const SidebarProvider: FC<SidebarProviderProps> = ({ children }): ReactNo
     setClassNames(prev => ({ ...prev, [name]: value }))
   }, [])
 
-  // Проверки наличия слотов сайдбара
-  const hasHeader = () => !!slots.header
-  const hasBody = () => !!slots.body
-  const hasFooter = () => !!slots.footer
-
   // API сайдбара
   const api: LayoutSidebarApi = {
     slots,
     classNames,
     setClassName,
-    setSlot,
-    hasHeader,
-    hasBody,
-    hasFooter
+    setSlot
   }
 
   return <LayoutSidebarContext.Provider value={api}>{children}</LayoutSidebarContext.Provider>

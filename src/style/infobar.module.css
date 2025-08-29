@@ -1,26 +1,15 @@
 /* Lucent CSS: Infobar */
-@import "./common/tokens.css";
-@import "./common/animation.css";
-
 .infobar {
   width: auto;
   height: auto;
-  transition: width var(--layout-lucent-animation-change-duration) ease-in-out;
 
   &.hidden {
     display: none;
   }
 }
-
 .infobarInner {
   display: flex;
   flex-direction: column;
   width: auto;
   height: 100%;
-  animation: innerShow var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
-
-  /* &.hidden {} */
-  &.collapsed {
-    animation: innerHide var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
-  }
 }
