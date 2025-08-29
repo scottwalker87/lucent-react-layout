@@ -30,9 +30,9 @@ LayoutBuilder.Header = ({ children, ...props }) => {
     </LayoutSlot>
   )
 }
-LayoutBuilder.Content = ({ children, ...props }) => {
+LayoutBuilder.Body = ({ children, ...props }) => {
   return (
-    <LayoutSlot name="content" {...props}>
+    <LayoutSlot name="body" {...props}>
       {children}
     </LayoutSlot>
   )

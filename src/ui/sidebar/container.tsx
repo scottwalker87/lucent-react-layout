@@ -12,17 +12,14 @@ import cls from "#style/sidebar.module.css"
  * @namespace Lucent.UI.SidebarContainer
  */
 export const SidebarContainer: FC<SidebarContainerProps> = ({ children, className }): ReactNode => {
-  const { isSidebarCollapsed, isSidebarHidden, sizes } = useLayout()
+  const { isSidebarCollapsed, isSidebarHidden } = useLayout()
   const { slots } = useLayoutSidebar()
   const collapsed = isSidebarCollapsed()
   const hidden = isSidebarHidden()
   const classes = cn(cls.sidebarContainer, collapsed && cls.collapsed, hidden && cls.hidden, className)
-  const style = {
-    width: collapsed ? sizes.sidebarCollapsedWidth : sizes.sidebarWidth
-  }
 
   return (
-    <aside className={classes} style={style}>
+    <aside className={classes}>
       {slots.header && <SidebarHeader collapsed={collapsed}>{slots.header}</SidebarHeader>}
 
       <SidebarBody collapsed={collapsed}>

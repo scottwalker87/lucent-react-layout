@@ -4,15 +4,15 @@ import { Button } from "./button"
 
 export const FooterVisibleTrigger = () => {
   const { toggleFooterVisibleMode, isFooterHidden } = useLayout()
-  const iconSize = 24
+  const iconSize = 32
   const iconStroke = 2.5
 
   return (
     <Button onClick={toggleFooterVisibleMode}>
       {isFooterHidden() ? (
-        <PanelBottomClose size={iconSize} strokeWidth={iconStroke} />
-      ) : (
         <PanelBottomOpen size={iconSize} strokeWidth={iconStroke} />
+      ) : (
+        <PanelBottomClose size={iconSize} strokeWidth={iconStroke} />
       )}
     </Button>
   )

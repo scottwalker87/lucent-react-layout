@@ -2,25 +2,23 @@ import type { ComponentProps, FC, ReactNode } from "react"
 import {
   THEME_MODE_LIGHT,
   THEME_MODE_DARK,
-  HEADER_MODE_VISIBLE,
+  HEADER_MODE_BASE,
   HEADER_MODE_HIDDEN,
-  FOOTER_MODE_VISIBLE,
+  FOOTER_MODE_BASE,
   FOOTER_MODE_HIDDEN,
-  SIDEBAR_MODE_VISIBLE,
+  SIDEBAR_MODE_BASE,
   SIDEBAR_MODE_HIDDEN,
   SIDEBAR_MODE_COLLAPSED,
-  SIDEBAR_MODE_EXPANDED,
-  INFOBAR_MODE_VISIBLE,
+  INFOBAR_MODE_BASE,
   INFOBAR_MODE_HIDDEN,
-  INFOBAR_MODE_COLLAPSED,
-  INFOBAR_MODE_EXPANDED
+  INFOBAR_MODE_COLLAPSED
 } from "#lib/constants"
 
 /**
  * Пропсы для шапки боковой панели
  * @namespace Lucent.SidebarHeaderProps
  */
-export type SidebarHeaderProps = {
+export type SidebarHeaderProps = ComponentProps<"div"> & {
   children: ReactNode
   collapsed: boolean
 }
@@ -29,7 +27,7 @@ export type SidebarHeaderProps = {
  * Пропсы для тела боковой панели
  * @namespace Lucent.SidebarBodyProps
  */
-export type SidebarBodyProps = {
+export type SidebarBodyProps = ComponentProps<"div"> & {
   children: ReactNode
   collapsed: boolean
 }
@@ -38,52 +36,42 @@ export type SidebarBodyProps = {
  * Пропсы для футера боковой панели
  * @namespace Lucent.SidebarFooterProps
  */
-export type SidebarFooterProps = {
+export type SidebarFooterProps = ComponentProps<"div"> & {
   children: ReactNode
   collapsed: boolean
 }
 
 /**
- * Пропсы для страницы
- * @namespace Lucent.PageProps
- */
-export type PageProps = {
-  children: ReactNode
-}
-
-/**
  * Пропсы для шапки
- * @namespace Lucent.PageHeaderProps
+ * @namespace Lucent.HeaderProps
  */
-export type PageHeaderProps = {
+export type HeaderProps = ComponentProps<"div"> & {
   children: ReactNode
 }
 
 /**
- * Пропсы для тела
- * @namespace Lucent.PageBodyProps
+ * Пропсы для тела макета (основной контент)
+ * @namespace Lucent.BodyProps
  */
-export type PageBodyProps = ComponentProps<"div">
-
-/**
- * Пропсы для футера
- * @namespace Lucent.PageFooterProps
- */
-export type PageFooterProps = {
+export type BodyProps = ComponentProps<"div"> & {
   children: ReactNode
 }
-
-/**
- * Пропсы для контента
- * @namespace Lucent.ContentProps
- */
-export type ContentProps = ComponentProps<"div">
 
 /**
  * Пропсы для информационного панеля
  * @namespace Lucent.InfobarProps
  */
-export type InfobarProps = ComponentProps<"div">
+export type InfobarProps = ComponentProps<"div"> & {
+  children: ReactNode
+}
+
+/**
+ * Пропсы для футера
+ * @namespace Lucent.FooterProps
+ */
+export type FooterProps = ComponentProps<"div"> & {
+  children: ReactNode
+}
 
 /**
  * Тип для состояния темы
@@ -93,39 +81,27 @@ export type ThemeMode = typeof THEME_MODE_LIGHT | typeof THEME_MODE_DARK
 
 /**
  * Тип для состояния шапки
- * @namespace Lucent.HeaderVisible
+ * @namespace Lucent.HeaderMode
  */
-export type HeaderVisibleMode = typeof HEADER_MODE_VISIBLE | typeof HEADER_MODE_HIDDEN
+export type HeaderMode = typeof HEADER_MODE_BASE | typeof HEADER_MODE_HIDDEN
 
 /**
  * Тип для состояния футера
- * @namespace Lucent.FooterVisible
+ * @namespace Lucent.FooterMode
  */
-export type FooterVisibleMode = typeof FOOTER_MODE_VISIBLE | typeof FOOTER_MODE_HIDDEN
+export type FooterMode = typeof FOOTER_MODE_BASE | typeof FOOTER_MODE_HIDDEN
 
 /**
  * Тип для состояния сайдбара
- * @namespace Lucent.SidebarVisible
+ * @namespace Lucent.SidebarMode
  */
-export type SidebarVisibleMode = typeof SIDEBAR_MODE_VISIBLE | typeof SIDEBAR_MODE_HIDDEN
-
-/**
- * Тип для состояния боковой панели
- * @namespace Lucent.SidebarCollapsed
- */
-export type SidebarCollapsedMode = typeof SIDEBAR_MODE_COLLAPSED | typeof SIDEBAR_MODE_EXPANDED
-
-/**
- * Тип для состояния информационной панели
- * @namespace Lucent.InfobarVisible
- */
-export type InfobarVisibleMode = typeof INFOBAR_MODE_VISIBLE | typeof INFOBAR_MODE_HIDDEN
+export type SidebarMode = typeof SIDEBAR_MODE_BASE | typeof SIDEBAR_MODE_HIDDEN | typeof SIDEBAR_MODE_COLLAPSED
 
 /**
  * Тип для состояния инфобара
- * @namespace Lucent.InfobarCollapsed
+ * @namespace Lucent.InfobarMode
  */
-export type InfobarCollapsedMode = typeof INFOBAR_MODE_COLLAPSED | typeof INFOBAR_MODE_EXPANDED
+export type InfobarMode = typeof INFOBAR_MODE_BASE | typeof INFOBAR_MODE_HIDDEN | typeof INFOBAR_MODE_COLLAPSED
 
 /**
  * Режимы макета
@@ -133,12 +109,10 @@ export type InfobarCollapsedMode = typeof INFOBAR_MODE_COLLAPSED | typeof INFOBA
  */
 export type LayoutModes = {
   theme?: ThemeMode
-  headerVisible?: HeaderVisibleMode
-  footerVisible?: FooterVisibleMode
-  sidebarVisible?: SidebarVisibleMode
-  sidebarCollapsed?: SidebarCollapsedMode
-  infobarVisible?: InfobarVisibleMode
-  infobarCollapsed?: InfobarCollapsedMode
+  header?: HeaderMode
+  footer?: FooterMode
+  sidebar?: SidebarMode
+  infobar?: InfobarMode
 }
 
 /**
@@ -157,26 +131,12 @@ export type LayoutSizes = {
 }
 
 /**
- * Рассчитанные размеры элементов макета
- * @namespace Lucent.LayoutCalculatedSizes
- */
-export type LayoutCalculatedSizes = {
-  headerHeight: string
-  footerHeight: string
-  sidebarWidth: string
-  sidebarBodyHeight: string
-  infobarWidth: string
-  bodyHeight: string
-  contentHeight: string
-}
-
-/**
  * CSS-классы макета
  * @namespace Lucent.LayoutClassNames
  */
 export type LayoutClassNames = {
   header?: string
-  content?: string
+  body?: string
   infobar?: string
   footer?: string
 }
@@ -198,7 +158,7 @@ export type SidebarClassNames = {
 export type LayoutSlots = {
   sidebar?: ReactNode
   header?: ReactNode
-  content?: ReactNode
+  body?: ReactNode
   infobar?: ReactNode
   footer?: ReactNode
 }
@@ -459,7 +419,7 @@ export type SidebarBuilderElementProps = ComponentProps<"div"> & {
 export type LayoutBuilderComponent = FC<LayoutBuilderProps> & {
   Sidebar: FC<LayoutBuilderElementProps>
   Header: FC<LayoutBuilderElementProps>
-  Content: FC<LayoutBuilderElementProps>
+  Body: FC<LayoutBuilderElementProps>
   Infobar: FC<LayoutBuilderElementProps>
   Footer: FC<LayoutBuilderElementProps>
 }

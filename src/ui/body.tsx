@@ -1,21 +1,16 @@
-import type { FC, ReactNode } from "react"
-import type { PageBodyProps } from "#lib/types"
+import type { ReactNode } from "react"
+import type { BodyProps } from "#lib/types"
 import { useLayout } from "#lib/context"
+import { cn } from "#/lib/utils"
 import cls from "#style/layout.module.css"
 
 /**
- * Тело макета
+ * Основной контент в макете
  * @namespace Lucent.UI.Body
  */
-export const Body: FC<PageBodyProps> = ({ children, ...props }): ReactNode => {
-  const { sizes } = useLayout()
-  const style = {
-    height: `calc(100vh - ${sizes.headerHeight} - ${sizes.footerHeight})`
-  }
+export const Body = ({ children }: BodyProps): ReactNode => {
+  const { classNames } = useLayout()
+  const classes = cn(cls.body, classNames.body)
 
-  return (
-    <div className={cls.body} {...props} style={style}>
-      {children}
-    </div>
-  )
+  return <div className={classes}>{children}</div>
 }

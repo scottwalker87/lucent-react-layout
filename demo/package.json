@@ -10,7 +10,7 @@
     "lucent:up": "npm rm @scottwalker/lucent && npm i @scottwalker/lucent"
   },
   "dependencies": {
-    "@scottwalker/lucent": "^1.0.7",
+    "@scottwalker/lucent": "^1.0.8",
     "lucide-react": "^0.542.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

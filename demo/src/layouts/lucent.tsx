@@ -35,11 +35,6 @@ export const Lucent = ({ children }: { children?: ReactNode }) => {
   return (
     <Layout config={config} className="layout">
       <Layout.Header className="header">
-        <SidebarVisibleTrigger />
-        <SidebarCollapseTrigger />
-        <InfobarVisibleTrigger />
-        <InfobarCollapseTrigger />
-        <FooterVisibleTrigger />
         <div>Header</div>
       </Layout.Header>
 
@@ -47,11 +42,24 @@ export const Lucent = ({ children }: { children?: ReactNode }) => {
         <Sidebar />
       </Layout.Sidebar>
 
-      <Layout.Content className="content scrollable">{children}</Layout.Content>
+      <Layout.Body className="body scrollable">
+        {children}
+
+        <div className="controls">
+          <HeaderVisibleTrigger />
+          <div className="controls-divider" />
+          <FooterVisibleTrigger />
+          <div className="controls-divider" />
+          <SidebarVisibleTrigger />
+          <SidebarCollapseTrigger />
+          <div className="controls-divider" />
+          <InfobarVisibleTrigger />
+          <InfobarCollapseTrigger />
+        </div>
+      </Layout.Body>
       <Layout.Infobar className="infobar">Infobar</Layout.Infobar>
 
       <Layout.Footer className="footer">
-        <HeaderVisibleTrigger />
         <div>Footer</div>
       </Layout.Footer>
     </Layout>

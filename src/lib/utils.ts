@@ -1,12 +1,10 @@
 import type { LayoutConfig, LayoutNormalizedConfig } from "#lib/types"
 import {
   THEME_MODE_LIGHT,
-  HEADER_MODE_VISIBLE,
-  FOOTER_MODE_VISIBLE,
-  SIDEBAR_MODE_VISIBLE,
-  SIDEBAR_MODE_COLLAPSED,
-  INFOBAR_MODE_VISIBLE,
-  INFOBAR_MODE_COLLAPSED
+  HEADER_MODE_BASE,
+  FOOTER_MODE_BASE,
+  SIDEBAR_MODE_BASE,
+  INFOBAR_MODE_BASE
 } from "#lib/constants"
 
 /**
@@ -67,33 +65,31 @@ export const normalizeConfig = (config: LayoutConfig): LayoutNormalizedConfig =>
   return {
     modes: {
       theme: modes.theme ?? THEME_MODE_LIGHT,
-      headerVisible: modes.headerVisible ?? HEADER_MODE_VISIBLE,
-      footerVisible: modes.footerVisible ?? FOOTER_MODE_VISIBLE,
-      sidebarVisible: modes.sidebarVisible ?? SIDEBAR_MODE_VISIBLE,
-      sidebarCollapsed: modes.sidebarCollapsed ?? SIDEBAR_MODE_COLLAPSED,
-      infobarVisible: modes.infobarVisible ?? INFOBAR_MODE_VISIBLE,
-      infobarCollapsed: modes.infobarCollapsed ?? INFOBAR_MODE_COLLAPSED
+      header: modes.header ?? HEADER_MODE_BASE,
+      footer: modes.footer ?? FOOTER_MODE_BASE,
+      sidebar: modes.sidebar ?? SIDEBAR_MODE_BASE,
+      infobar: modes.infobar ?? INFOBAR_MODE_BASE
     },
     sizes: {
+      headerHeight: sizes.headerHeight ?? "3.125rem",
+      footerHeight: sizes.footerHeight ?? "3.125rem",
       sidebarWidth: sizes.sidebarWidth ?? "15.625rem",
       sidebarCollapsedWidth: sizes.sidebarCollapsedWidth ?? "3.125rem",
       sidebarHeaderHeight: sizes.sidebarHeaderHeight ?? "3.125rem",
       sidebarFooterHeight: sizes.sidebarFooterHeight ?? "3.125rem",
       infobarWidth: sizes.infobarWidth ?? "15.625rem",
-      infobarCollapsedWidth: sizes.infobarCollapsedWidth ?? "3.125rem",
-      headerHeight: sizes.headerHeight ?? "3.125rem",
-      footerHeight: sizes.footerHeight ?? "3.125rem"
+      infobarCollapsedWidth: sizes.infobarCollapsedWidth ?? "3.125rem"
     },
     slots: {
       header: slots.header ?? null,
       sidebar: slots.sidebar ?? null,
-      content: slots.content ?? null,
+      body: slots.body ?? null,
       infobar: slots.infobar ?? null,
       footer: slots.footer ?? null
     },
     classNames: {
       header: classNames.header ?? "",
-      content: classNames.content ?? "",
+      body: classNames.body ?? "",
       infobar: classNames.infobar ?? "",
       footer: classNames.footer ?? ""
     }

@@ -13,18 +13,16 @@ import type {
 import {
   THEME_MODE_LIGHT,
   THEME_MODE_DARK,
+  HEADER_MODE_BASE,
   HEADER_MODE_HIDDEN,
-  HEADER_MODE_VISIBLE,
+  FOOTER_MODE_BASE,
   FOOTER_MODE_HIDDEN,
-  FOOTER_MODE_VISIBLE,
   SIDEBAR_MODE_COLLAPSED,
   SIDEBAR_MODE_HIDDEN,
-  SIDEBAR_MODE_VISIBLE,
-  SIDEBAR_MODE_EXPANDED,
+  INFOBAR_MODE_BASE,
   INFOBAR_MODE_HIDDEN,
-  INFOBAR_MODE_VISIBLE,
   INFOBAR_MODE_COLLAPSED,
-  INFOBAR_MODE_EXPANDED
+  SIDEBAR_MODE_BASE
 } from "#lib/constants"
 import { LayoutContext } from "#lib/context"
 import { normalizeConfig } from "#lib/utils"
@@ -37,7 +35,7 @@ export const LayoutProvider: FC<LayoutProviderProps> = ({ children, config }): R
   const defaultConfig = normalizeConfig(config)
 
   const [modes, setModes] = useState<LayoutModes>(defaultConfig.modes)
-  const [sizes, setSizes] = useState<LayoutSizes>(defaultConfig.sizes)
+  const [sizes] = useState<LayoutSizes>(defaultConfig.sizes)
   const [classNames, setClassNames] = useState<LayoutClassNames>(defaultConfig.classNames)
   const [slots, setSlots] = useState<LayoutSlots>(defaultConfig.slots)
 
@@ -70,12 +68,12 @@ export const LayoutProvider: FC<LayoutProviderProps> = ({ children, config }): R
 
   // Проверки режимов макета
   const isThemeDark = () => modes.theme === THEME_MODE_DARK
-  const isHeaderHidden = () => modes.headerVisible === HEADER_MODE_HIDDEN
-  const isFooterHidden = () => modes.footerVisible === FOOTER_MODE_HIDDEN
-  const isSidebarCollapsed = () => modes.sidebarCollapsed === SIDEBAR_MODE_COLLAPSED
-  const isSidebarHidden = () => modes.sidebarVisible === SIDEBAR_MODE_HIDDEN
-  const isInfobarCollapsed = () => modes.infobarCollapsed === INFOBAR_MODE_COLLAPSED
-  const isInfobarHidden = () => modes.infobarVisible === INFOBAR_MODE_HIDDEN
+  const isHeaderHidden = () => modes.header === HEADER_MODE_HIDDEN
+  const isFooterHidden = () => modes.footer === FOOTER_MODE_HIDDEN
+  const isSidebarHidden = () => modes.sidebar === SIDEBAR_MODE_HIDDEN
+  const isSidebarCollapsed = () => modes.sidebar === SIDEBAR_MODE_COLLAPSED
+  const isInfobarHidden = () => modes.infobar === INFOBAR_MODE_HIDDEN
+  const isInfobarCollapsed = () => modes.infobar === INFOBAR_MODE_COLLAPSED
 
   // Проверки наличия видимых слотов макета
   const hasHeader = () => !!slots.header && !isHeaderHidden()
@@ -86,22 +84,22 @@ export const LayoutProvider: FC<LayoutProviderProps> = ({ children, config }): R
   // Переключатели режимов макета
   const toggleThemeMode = () => setMode("theme", isThemeDark() ? THEME_MODE_LIGHT : THEME_MODE_DARK)
   const toggleHeaderVisibleMode = () => {
-    setMode("headerVisible", isHeaderHidden() ? HEADER_MODE_VISIBLE : HEADER_MODE_HIDDEN)
+    setMode("header", isHeaderHidden() ? HEADER_MODE_BASE : HEADER_MODE_HIDDEN)
   }
   const toggleFooterVisibleMode = () => {
-    setMode("footerVisible", isFooterHidden() ? FOOTER_MODE_VISIBLE : FOOTER_MODE_HIDDEN)
+    setMode("footer", isFooterHidden() ? FOOTER_MODE_BASE : FOOTER_MODE_HIDDEN)
   }
   const toggleSidebarVisibleMode = () => {
-    setMode("sidebarVisible", isSidebarHidden() ? SIDEBAR_MODE_VISIBLE : SIDEBAR_MODE_HIDDEN)
+    setMode("sidebar", isSidebarHidden() ? SIDEBAR_MODE_BASE : SIDEBAR_MODE_HIDDEN)
   }
   const toggleSidebarCollapsedMode = () => {
-    setMode("sidebarCollapsed", isSidebarCollapsed() ? SIDEBAR_MODE_EXPANDED : SIDEBAR_MODE_COLLAPSED)
+    setMode("sidebar", isSidebarCollapsed() ? SIDEBAR_MODE_BASE : SIDEBAR_MODE_COLLAPSED)
   }
   const toggleInfobarVisibleMode = () => {
-    setMode("infobarVisible", isInfobarHidden() ? INFOBAR_MODE_VISIBLE : INFOBAR_MODE_HIDDEN)
+    setMode("infobar", isInfobarHidden() ? INFOBAR_MODE_BASE : INFOBAR_MODE_HIDDEN)
   }
   const toggleInfobarCollapsedMode = () => {
-    setMode("infobarCollapsed", isInfobarCollapsed() ? INFOBAR_MODE_EXPANDED : INFOBAR_MODE_COLLAPSED)
+    setMode("infobar", isInfobarCollapsed() ? INFOBAR_MODE_BASE : INFOBAR_MODE_COLLAPSED)
   }
 
   // API макета
