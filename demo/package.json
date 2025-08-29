@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lucent:up": "npm rm @scottwalker/lucent && npm i @scottwalker/lucent"
   },
   "dependencies": {
-    "@scottwalker/lucent": "^1.0.5",
+    "@scottwalker/lucent": "^1.0.6",
     "lucide-react": "^0.542.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

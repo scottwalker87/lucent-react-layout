@@ -1,4 +1,4 @@
-import type { ComponentProps, ReactNode } from "react"
+import type { ComponentProps, FC, ReactNode } from "react"
 import {
   THEME_MODE_LIGHT,
   THEME_MODE_DARK,
@@ -418,4 +418,26 @@ export type SidebarBuilderProps = ComponentProps<"div"> & {
  */
 export type SidebarBuilderElementProps = ComponentProps<"div"> & {
   children: ReactNode
+}
+
+/**
+ * Тип для конструктора макета
+ * @namespace Lucent.LayoutBuilderComponent
+ */
+export type LayoutBuilderComponent = FC<LayoutBuilderProps> & {
+  Sidebar: FC<LayoutBuilderElementProps>
+  Header: FC<LayoutBuilderElementProps>
+  Content: FC<LayoutBuilderElementProps>
+  Infobar: FC<LayoutBuilderElementProps>
+  Footer: FC<LayoutBuilderElementProps>
+}
+
+/**
+ * Тип для конструктора сайдбара
+ * @namespace Lucent.SidebarBuilderComponent
+ */
+export type SidebarBuilderComponent = FC<SidebarBuilderProps> & {
+  Header: FC<SidebarBuilderElementProps>
+  Body: FC<SidebarBuilderElementProps>
+  Footer: FC<SidebarBuilderElementProps>
 }

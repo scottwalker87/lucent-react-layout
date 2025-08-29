@@ -1,4 +1,5 @@
-import { type LayoutConfig, Layout, normalizeConfig } from "../../../src/index"
+// import { type LayoutConfig, Layout, normalizeConfig } from "../../../src/index"
+import { Layout, normalizeConfig, type LayoutConfig } from "@scottwalker/lucent"
 import { Sidebar } from "./sidebar"
 import { SidebarVisibleTrigger } from "../ui/sidebar-visible-trigger"
 import { SidebarCollapseTrigger } from "../ui/sidebar-collapse-trigger"
