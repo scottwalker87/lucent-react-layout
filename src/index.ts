@@ -1,4 +1,6 @@
 export type { LayoutConfig } from "#lib/types"
 export { useLayout } from "#lib/context"
 export { normalizeConfig } from "#lib/utils"
-export { Lucent } from "#/lucent"
+export { LayoutBuilder as Layout } from "#/structure/layout-builder"
+export { SidebarBuilder as Sidebar } from "#/structure/sidebar-builder"
+export { Scrollbar } from "#ui/scrollbar"

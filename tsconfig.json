@@ -17,22 +17,12 @@
     "baseUrl": ".",
     "paths": {
       "#/*": ["src/*"],
+      "#structure/*": ["src/structure/*"],
       "#lib/*": ["src/lib/*"],
       "#ui/*": ["src/ui/*"],
       "#style/*": ["src/style/*"]
     }
   },
-  "include": [
-    "*.ts",
-    "*.tsx",
-    "*.css",
-    "types/**/*",
-    "src/style/**/*",
-    "src/lib/**/*",
-    "src/ui/**/*",
-    "src/index.ts",
-    "src/lucent.tsx",
-    "src/provider.tsx"
-  ],
+  "include": ["*.ts", "*.tsx", "*.css", "types/**/*", "src/**/*"],
   "exclude": ["node_modules", "dist"]
 }

@@ -17,6 +17,33 @@ import {
 } from "#lib/constants"
 
 /**
+ * Пропсы для шапки боковой панели
+ * @namespace Lucent.SidebarHeaderProps
+ */
+export type SidebarHeaderProps = {
+  children: ReactNode
+  collapsed: boolean
+}
+
+/**
+ * Пропсы для тела боковой панели
+ * @namespace Lucent.SidebarBodyProps
+ */
+export type SidebarBodyProps = {
+  children: ReactNode
+  collapsed: boolean
+}
+
+/**
+ * Пропсы для футера боковой панели
+ * @namespace Lucent.SidebarFooterProps
+ */
+export type SidebarFooterProps = {
+  children: ReactNode
+  collapsed: boolean
+}
+
+/**
  * Пропсы для страницы
  * @namespace Lucent.PageProps
  */
@@ -115,13 +142,49 @@ export type LayoutModes = {
 }
 
 /**
+ * Размеры элементов макета
+ * @namespace Lucent.LayoutSizes
+ */
+export type LayoutSizes = {
+  sidebarWidth?: string
+  sidebarCollapsedWidth?: string
+  sidebarHeaderHeight?: string
+  sidebarFooterHeight?: string
+  infobarWidth?: string
+  infobarCollapsedWidth?: string
+  headerHeight?: string
+  footerHeight?: string
+}
+
+/**
+ * CSS-классы макета
+ * @namespace Lucent.LayoutClassNames
+ */
+export type LayoutClassNames = {
+  header?: string
+  content?: string
+  infobar?: string
+  footer?: string
+}
+
+/**
+ * CSS-классы сайдбара
+ * @namespace Lucent.SidebarClassNames
+ */
+export type SidebarClassNames = {
+  header?: string
+  body?: string
+  footer?: string
+}
+
+/**
  * Слоты макета
  * @namespace Lucent.LayoutSlots
  */
 export type LayoutSlots = {
-  sidebar?: SidebarSlots
+  sidebar?: ReactNode
   header?: ReactNode
-  content: ReactNode
+  content?: ReactNode
   infobar?: ReactNode
   footer?: ReactNode
 }
@@ -137,12 +200,23 @@ export type SidebarSlots = {
 }
 
 /**
+ * Пропсы для слота
+ * @namespace Lucent.LayoutSlotProps
+ */
+export type LayoutSlotProps = {
+  name: LayoutSlot
+  children: ReactNode
+  className?: string
+}
+
+/**
  * Пропсы для слота боковой панели
  * @namespace Lucent.SidebarSlotProps
  */
 export type SidebarSlotProps = {
+  name: SidebarSlot
   children: ReactNode
-  collapsed: boolean
+  className?: string
 }
 
 /**
@@ -170,47 +244,82 @@ export type LayoutSlot = keyof LayoutSlots
 export type LayoutSlotValue = LayoutSlots[LayoutSlot] | null
 
 /**
- * Варианты слотов боковой панели
+ * Варианты слотов сайдбара
  * @namespace Lucent.SidebarSlot
  */
 export type SidebarSlot = keyof SidebarSlots
+
+/**
+ * Значение слота сайдбара
+ * @namespace Lucent.SidebarSlotValue
+ */
+export type SidebarSlotValue = SidebarSlots[SidebarSlot] | null
 
 /**
  * Конфигурация макета
  * @namespace Lucent.LayoutConfig
  */
 export type LayoutConfig = {
-  modes: LayoutModes
-  slots: LayoutSlots
+  modes?: LayoutModes
+  sizes?: LayoutSizes
+  slots?: LayoutSlots
+  classNames?: LayoutClassNames
 }
 
 /**
- * Пропсы для провайдера
- * @namespace Lucent.ProviderProps
+ * Нормализованная конфигурация макета
+ * @namespace Lucent.LayoutNormalizedConfig
  */
-export type ProviderProps = {
+export type LayoutNormalizedConfig = {
+  modes: LayoutModes
+  sizes: LayoutSizes
+  slots: LayoutSlots
+  classNames: LayoutClassNames
+}
+
+/**
+ * Пропсы для провайдера макета
+ * @namespace Lucent.LayoutProviderProps
+ */
+export type LayoutProviderProps = {
   children: ReactNode
   config: LayoutConfig
 }
 
 /**
+ * Пропсы для провайдера сайдбара
+ * @namespace Lucent.SidebarProviderProps
+ */
+export type SidebarProviderProps = {
+  children: ReactNode
+}
+
+/**
+ * Пропсы для макета
+ * @namespace Lucent.LayoutProps
+ */
+export type LayoutProps = ComponentProps<"div"> & {
+  children: ReactNode
+}
+
+/**
+ * Пропсы для макета сайдбара
+ * @namespace Lucent.SidebarLayoutProps
+ */
+export type SidebarLayoutProps = ComponentProps<"div"> & {
+  children: ReactNode
+}
+
+/**
  * API макета
  * @namespace Lucent.LayoutApi
- * @see Lucent.Provider
+ * @see Lucent.LayoutProvider
  *
  * @property {LayoutModes} modes - режимы макета
  * @property {LayoutSlots} slots - слоты макета
  *
- * @property {function} setModes - установить режимы
  * @property {function} setMode - установить режим
- * @property {function} setSlots - установить слоты
  * @property {function} setSlot - установить слот
- * @property {function} setSidebarSlots - установить слоты боковой панели
- * @property {function} setSidebarSlot - установить слот боковой панели
- *
- * @property {function} getMode - получить режим
- * @property {function} getSlot - получить слот
- * @property {function} getSidebarSlot - получить слот боковой панели
  *
  * @property {function} isThemeDark - проверить, является ли тема темной
  * @property {function} isHeaderHidden - проверить, является ли шапка скрытой
@@ -236,20 +345,14 @@ export type ProviderProps = {
  */
 export type LayoutApi = {
   modes: LayoutModes
+  sizes: LayoutSizes
   slots: LayoutSlots
+  classNames: LayoutClassNames
 
   // Сеттеры
-  setModes: (modes: LayoutModes) => void
   setMode: (mode: LayoutMode, value: LayoutModeValue) => void
-  setSlots: (slots: LayoutSlots) => void
   setSlot: (slot: LayoutSlot, value: LayoutSlotValue) => void
-  setSidebarSlots: (slots: SidebarSlots) => void
-  setSidebarSlot: (slot: SidebarSlot, value: ReactNode) => void
-
-  // Геттеры
-  getMode: (mode: LayoutMode) => LayoutModeValue
-  getSlot: (slot: LayoutSlot) => LayoutSlotValue
-  getSidebarSlot: (slot: SidebarSlot) => ReactNode
+  setClassName: (name: keyof LayoutClassNames, value: string) => void
 
   // Проверки режимов
   isThemeDark: () => boolean
@@ -278,9 +381,63 @@ export type LayoutApi = {
 }
 
 /**
- * Пропсы для макета "Lucent"
- * @namespace Lucent.LucentProps
+ * API сайдбара
+ * @namespace Lucent.LayoutSidebarApi
+ * @see Lucent.LayoutSidebarContext
+ *
+ * @property {SidebarSlots} slots - слоты сайдбара
+ * @property {SidebarClassNames} classNames - CSS классы сайдбара
+ *
+ * @property {function} setClassName - установить CSS класс сайдбара
+ * @property {function} setSlot - установить слот сайдбара
+ *
+ * @property {function} hasHeader - проверить, есть ли шапка сайдбара
+ * @property {function} hasBody - проверить, есть ли тело сайдбара
+ * @property {function} hasFooter - проверить, есть ли футер сайдбара
  */
-export type LucentProps = {
+export type LayoutSidebarApi = {
+  slots: SidebarSlots
+  classNames: SidebarClassNames
+
+  // Сеттеры
+  setSlot: (slot: SidebarSlot, value: ReactNode) => void
+  setClassName: (name: keyof SidebarClassNames, value: string) => void
+
+  // Проверки наличия слотов
+  hasHeader: () => boolean
+  hasBody: () => boolean
+  hasFooter: () => boolean
+}
+
+/**
+ * Пропсы для конструктора макета
+ * @namespace Lucent.LayoutBuilderProps
+ */
+export type LayoutBuilderProps = ComponentProps<"div"> & {
   config: LayoutConfig
+  children?: ReactNode
+}
+
+/**
+ * Пропсы для элементов конструктора макета
+ * @namespace Lucent.LayoutBuilderElementProps
+ */
+export type LayoutBuilderElementProps = ComponentProps<"div"> & {
+  children: ReactNode
+}
+
+/**
+ * Пропсы для конструктора сайдбара
+ * @namespace Lucent.SidebarBuilderProps
+ */
+export type SidebarBuilderProps = ComponentProps<"div"> & {
+  children: ReactNode
+}
+
+/**
+ * Пропсы для элементов конструктора сайдбара
+ * @namespace Lucent.SidebarBuilderElementProps
+ */
+export type SidebarBuilderElementProps = ComponentProps<"div"> & {
+  children: ReactNode
 }

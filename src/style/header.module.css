@@ -1,13 +1,11 @@
 /* Lucent CSS: Header */
-@import "./common/tokens.css";
 
 .header {
   position: relative;
   z-index: 10;
-  height: var(--layout-lucent-header-height);
+  width: auto;
+  height: auto;
   overflow: hidden;
-  border-block-end: 0.0625rem solid var(--layout-lucent-separator-color);
-  background-color: var(--layout-lucent-header-background-color);
   transition: height var(--layout-lucent-animation-change-duration) ease-in-out;
 
   &.hidden {
@@ -18,9 +16,7 @@
 .headerInner {
   display: flex;
   align-items: center;
-  gap: var(--layout-lucent-header-gap);
-  padding-inline: var(--layout-lucent-header-offset-x);
-  padding-block: var(--layout-lucent-header-offset-y);
+  width: 100%;
   height: 100%;
   opacity: 1;
   transition: opacity var(--layout-lucent-animation-inner-change-duration) ease-in-out;

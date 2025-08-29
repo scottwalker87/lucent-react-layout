@@ -19,6 +19,7 @@
   "type": "module",
   "imports": {
     "#/*": "./src/*",
+    "#structure/*": "./src/structure/*",
     "#lib/*": "./src/lib/*",
     "#ui/*": "./src/ui/*",
     "#style/*": "./src/style/*"
@@ -42,16 +43,17 @@
   "author": "Scott Walker",
   "license": "MIT",
   "peerDependencies": {
-    "react": ">=18.0.0",
-    "react-dom": ">=18.0.0"
+    "react": ">=19.1.1",
+    "react-dom": ">=19.1.1",
+    "react-scrollbars-custom": ">=4.1.1"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@rollup/plugin-typescript": "^11.0.0",
     "@types/node": "^24.3.0",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
     "postcss-import": "^16.1.1",
     "rimraf": "^5.0.0",
     "rollup": "^4.0.0",
@@ -60,8 +62,5 @@
     "rollup-plugin-postcss": "^4.0.2",
     "tslib": "^2.8.1",
     "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "react-scrollbars-custom": "^4.1.1"
   }
 }

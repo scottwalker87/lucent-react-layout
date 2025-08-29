@@ -1,31 +1,21 @@
-import type { FC, ReactNode } from "react"
-import type { LayoutApi } from "#lib/types"
-import { Sidebar } from "#ui/sidebar"
-import { Page } from "#ui/page"
-import { Header } from "#ui/header"
-import { Body } from "#ui/body"
-import { Content } from "#ui/content"
-import { Infobar } from "#ui/infobar"
-import { Footer } from "#ui/footer"
+import { FC, type ReactNode } from "react"
 import { useLayout } from "#lib/context"
+import type { LayoutProps } from "#lib/types"
+import { Page } from "./page"
+import { Header } from "./header"
+import { Body } from "./body"
+import { Footer } from "./footer"
+import { Infobar } from "./infobar"
+import { Content } from "./content"
 import styles from "#style/layout.module.css"
+import { cn } from "#lib/utils"
 
 /**
- * Каркас макета
+ * Макет
  * @namespace Lucent.UI.Layout
  */
-export const Layout: FC = (): ReactNode => {
-  const { modes, slots, hasSidebar, hasHeader, hasInfobar, hasFooter, hasContent }: LayoutApi = useLayout()
-
-  if (!hasContent()) {
-    throw new Error("Ну контент же, все-таки, нужно передать 🙄")
-  }
-
-  const header = hasHeader() ? <Header>{slots.header}</Header> : null
-  const sidebar = hasSidebar() ? <Sidebar {...slots.sidebar} /> : null
-  const infobar = hasInfobar() ? <Infobar>{slots.infobar}</Infobar> : null
-  const footer = hasFooter() ? <Footer>{slots.footer}</Footer> : null
-  const content = <Content>{slots.content}</Content>
+export const Layout: FC<LayoutProps> = ({ children, className }): ReactNode => {
+  const { modes, slots } = useLayout()
 
   // Аттрибуты для опредления глобальных стилей
   const modeAttributes = {
@@ -37,17 +27,25 @@ export const Layout: FC = (): ReactNode => {
     "data-infobar-visible-mode": modes.infobarVisible,
     "data-infobar-collapsed-mode": modes.infobarCollapsed
   }
+  const classes = cn(styles.layout, className)
 
   return (
-    <div className={styles.layout} {...modeAttributes}>
-      {sidebar}
+    <div className={classes} {...modeAttributes}>
+      {slots.sidebar}
+
       <Page>
-        {header}
+        {slots.header && <Header>{slots.header}</Header>}
+
         <Body>
-          {content}
-          {infobar}
+          <Content>
+            {slots.content}
+            {children}
+          </Content>
+
+          {slots.infobar && <Infobar>{slots.infobar}</Infobar>}
         </Body>
-        {footer}
+
+        {slots.footer && <Footer>{slots.footer}</Footer>}
       </Page>
     </div>
   )

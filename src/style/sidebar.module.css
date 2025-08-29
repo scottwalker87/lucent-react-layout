@@ -8,26 +8,19 @@
   justify-content: space-between;
   position: relative;
   z-index: 10;
-  width: var(--layout-lucent-sidebar-width);
+  width: auto;
   height: 100%;
   overflow: hidden;
-  box-shadow: var(--layout-lucent-sidebar-shadow);
   transition: width var(--layout-lucent-animation-change-duration) ease-in-out;
-  /* animation: sidebarExpand var(--layout-lucent-animation-change-duration) ease-in-out forwards; */
 
   &.hidden {
     display: none;
   }
-  &.collapsed {
-    width: var(--layout-lucent-sidebar-collapsed-width);
-    /* animation: sidebarCollapse var(--layout-lucent-animation-change-duration) ease-in-out forwards; */
-  }
 }
 
 .sidebarHeader {
-  height: var(--layout-lucent-sidebar-header-height);
-  border-block-end: 0.0625rem solid var(--layout-lucent-separator-color);
-  background-color: var(--layout-lucent-sidebar-header-background-color);
+  width: auto;
+  height: auto;
 
   /* &.hidden {} */
   /* &.collapsed {} */
@@ -37,6 +30,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: auto;
   height: 100%;
   animation: innerShow var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
 
@@ -48,16 +42,22 @@
 
 .sidebarBody {
   flex-grow: 1;
+  flex: 1;
+  width: auto;
+  height: auto;
+  overflow-x: auto;
+  overflow-y: auto;
 
   /* &.hidden {} */
   /* &.collapsed {} */
 }
 
 .sidebarBodyInner {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  height: 100%;
+  width: auto;
+  height: auto;
   animation: innerShow var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
 
   /* &.hidden {} */
@@ -68,8 +68,8 @@
 
 .sidebarFooter {
   margin-top: auto;
-  height: var(--layout-lucent-sidebar-footer-height);
-  background: var(--layout-lucent-sidebar-footer-background-color);
+  width: auto;
+  height: auto;
 
   /* &.hidden {} */
   /* &.collapsed {} */
@@ -80,6 +80,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: auto;
   height: 100%;
   animation: innerShow var(--layout-lucent-animation-inner-change-duration) ease-in-out forwards;
 

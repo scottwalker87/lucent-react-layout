@@ -1,4 +1,5 @@
-import { Lucent, type LayoutConfig, normalizeConfig } from "@scottwalker/lucent"
+import { type LayoutConfig, Layout, Sidebar, normalizeConfig, Scrollbar } from "../../src/index"
+import cls from "./app.module.css"
 
 export const App = () => {
   const config: LayoutConfig = normalizeConfig({
@@ -7,52 +8,50 @@ export const App = () => {
       headerVisible: "visible",
       footerVisible: "visible",
       sidebarVisible: "visible",
-      sidebarCollapsed: "collapsed",
+      sidebarCollapsed: "expanded",
       infobarVisible: "visible",
-      infobarCollapsed: "collapsed"
+      infobarCollapsed: "expanded"
     },
-    slots: {
-      header: <h1>Header</h1>,
-      sidebar: {
-        header: <h1>Sidebar Header</h1>,
-        body: <h1>Sidebar Body</h1>,
-        footer: <h1>Sidebar Footer</h1>
-      },
-      content: <h1>Content</h1>,
-      footer: <h1>Footer</h1>,
-      infobar: <h1>Infobar</h1>
-    }
-  })
-
-  return <Lucent config={config} />
-}
-
-export const NewApp = () => {
-  const config: LayoutConfig = normalizeConfig({
-    modes: {
-      theme: "dark",
-      headerVisible: "visible",
-      footerVisible: "visible",
-      sidebarVisible: "visible",
-      sidebarCollapsed: "collapsed",
-      infobarVisible: "visible",
-      infobarCollapsed: "collapsed"
+    sizes: {
+      sidebarWidth: "15.625rem",
+      sidebarCollapsedWidth: "3.125rem",
+      sidebarHeaderHeight: "3.125rem",
+      sidebarFooterHeight: "5rem",
+      infobarWidth: "15.625rem",
+      infobarCollapsedWidth: "3.125rem",
+      headerHeight: "3.125rem",
+      footerHeight: "5rem"
     }
   })
 
   return (
-    <Lucent config={config}>
-      <Lucent.Header>Header</Lucent.Header>
+    <Layout config={config} className={cls.layout}>
+      <Layout.Header className={cls.header}>Header</Layout.Header>
 
-      <Lucent.Sidebar>
-        <Lucent.Sidebar.Header>Sidebar Header</Lucent.Sidebar.Header>
-        <Lucent.Sidebar.Body>Sidebar Body</Lucent.Sidebar.Body>
-        <Lucent.Sidebar.Footer>Sidebar Footer</Lucent.Sidebar.Footer>
-      </Lucent.Sidebar>
+      <Layout.Sidebar>
+        <Sidebar className={cls.sidebar}>
+          <Sidebar.Header className={cls.sidebarHeader}>Sidebar Header</Sidebar.Header>
+          <Sidebar.Body className={cls.sidebarBody}>
+            <div style={{ height: 500 }}>1</div>
+            <div style={{ height: 500 }}>2</div>
+            <div style={{ height: 500 }}>3</div>
+            <div style={{ height: 500 }}>4</div>
+            <div style={{ height: 500 }}>5</div>
+          </Sidebar.Body>
+          <Sidebar.Footer className={cls.sidebarFooter}>Sidebar Footer</Sidebar.Footer>
+        </Sidebar>
+      </Layout.Sidebar>
 
-      <Lucent.Content>Content</Lucent.Content>
-      <Lucent.Footer>Footer</Lucent.Footer>
-      <Lucent.Infobar>Infobar</Lucent.Infobar>
-    </Lucent>
+      <Layout.Content className={cls.content}>
+        <div style={{ height: 500 }}>1</div>
+        <div style={{ height: 500 }}>2</div>
+        <div style={{ height: 500 }}>3</div>
+        <div style={{ height: 500 }}>4</div>
+        <div style={{ height: 500 }}>5</div>
+      </Layout.Content>
+      <Layout.Infobar className={cls.infobar}>Infobar</Layout.Infobar>
+
+      <Layout.Footer className={cls.footer}>Footer</Layout.Footer>
+    </Layout>
   )
 }

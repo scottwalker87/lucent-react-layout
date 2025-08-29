@@ -49,6 +49,7 @@ export default [
           baseUrl: ".",
           paths: {
             "#/*": ["src/*"],
+            "#structure/*": ["src/structure/*"],
             "#lib/*": ["src/lib/*"],
             "#ui/*": ["src/ui/*"],
             "#style/*": ["src/style/*"]

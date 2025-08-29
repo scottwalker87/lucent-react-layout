@@ -9,18 +9,25 @@ import styles from "#style/footer.module.css"
  * @namespace Lucent.UI.Footer
  */
 export const Footer: FC<PageFooterProps> = ({ children }): ReactNode => {
-  const hidden = useLayout().isFooterHidden()
+  const { isFooterHidden, sizes, classNames } = useLayout()
+  const hidden = isFooterHidden()
   const classes = cn({
     [styles.footer]: true,
     [styles.hidden]: hidden
   })
-  const innerClasses = cn({
-    [styles.footerInner]: true,
-    [styles.hidden]: hidden
-  })
+  const innerClasses = cn(
+    {
+      [styles.footerInner]: true,
+      [styles.hidden]: hidden
+    },
+    classNames.footer
+  )
+  const style = {
+    height: sizes.footerHeight
+  }
 
   return (
-    <footer className={classes}>
+    <footer className={classes} style={style}>
       <div className={innerClasses}>{children}</div>
     </footer>
   )
