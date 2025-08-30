@@ -12,7 +12,7 @@ import {
   INFOBAR_MODE_BASE,
   INFOBAR_MODE_HIDDEN,
   INFOBAR_MODE_COLLAPSED
-} from "#lib/constants"
+} from "../lib/constants"
 
 /**
  * Пропсы контейнера

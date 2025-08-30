@@ -1,8 +1,8 @@
 import { useLayoutEffect } from "react"
-import type { HeaderComponent } from "#types"
-import { cn } from "#lib/utils"
-import { useLayout } from "#lib/context"
-import cls from "#style/layout.module.css"
+import type { HeaderComponent } from "../types"
+import { cn } from "../lib/utils"
+import { useLayout } from "../lib/context"
+import cls from "../style/layout.module.css"
 
 /**
  * Шапка

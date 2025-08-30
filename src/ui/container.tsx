@@ -1,7 +1,7 @@
-import type { ContainerComponent } from "#types"
-import { cn, calcStyles, makeModeAttributes } from "#lib/utils"
-import { useLayout } from "#lib/context"
-import cls from "#style/layout.module.css"
+import type { ContainerComponent } from "../types"
+import { cn, calcStyles, makeModeAttributes } from "../lib/utils"
+import { useLayout } from "../lib/context"
+import cls from "../style/layout.module.css"
 
 /**
  * Контейнер макета

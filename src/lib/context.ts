@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react"
-import type { LayoutApi } from "#types"
+import type { LayoutApi } from "../types"
 
 /**
  * Контекст макета

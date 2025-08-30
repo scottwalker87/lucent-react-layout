@@ -12,7 +12,7 @@ import type {
   LayoutParams,
   LayoutHasSlots,
   ProviderComponent
-} from "#types"
+} from "../types"
 import {
   THEME_MODE_LIGHT,
   THEME_MODE_DARK,
@@ -26,10 +26,10 @@ import {
   INFOBAR_MODE_HIDDEN,
   INFOBAR_MODE_COLLAPSED,
   SIDEBAR_MODE_BASE
-} from "#lib/constants"
-import { LayoutContext } from "#lib/context"
-import { normalizeConfig } from "#lib/utils"
-import { Container } from "#ui"
+} from "../lib/constants"
+import { LayoutContext } from "../lib/context"
+import { normalizeConfig } from "../lib/utils"
+import { Container } from "../ui"
 
 /**
  * Провайдер макета

@@ -7,14 +7,8 @@ import type {
   LayoutModes,
   LayoutNormalizedModes,
   LayoutHasSlots
-} from "#types"
-import {
-  THEME_MODE_LIGHT,
-  HEADER_MODE_BASE,
-  FOOTER_MODE_BASE,
-  SIDEBAR_MODE_BASE,
-  INFOBAR_MODE_BASE
-} from "#lib/constants"
+} from "../types"
+import { THEME_MODE_LIGHT, HEADER_MODE_BASE, FOOTER_MODE_BASE, SIDEBAR_MODE_BASE, INFOBAR_MODE_BASE } from "./constants"
 import { CSSProperties } from "react"
 
 /**

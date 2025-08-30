@@ -15,13 +15,7 @@
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
-    "paths": {
-      "#types": ["src/types/index.ts"],
-      "#structure": ["src/structure/index.ts"],
-      "#ui": ["src/ui/index.ts"],
-      "#lib/*": ["src/lib/*"],
-      "#style/*": ["src/style/*"]
-    }
+    "paths": {}
   },
   "include": ["*.ts", "*.tsx", "*.css", "types/**/*", "src/**/*"],
   "exclude": ["node_modules", "dist"]

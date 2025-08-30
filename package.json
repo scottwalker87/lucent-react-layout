@@ -17,13 +17,6 @@
     "README.md"
   ],
   "type": "module",
-  "imports": {
-    "#types": "./src/types/index.ts",
-    "#structure": "./src/structure/index.ts",
-    "#ui": "./src/ui/index.ts",
-    "#lib/*": "./src/lib/*",
-    "#style/*": "./src/style/*"
-  },
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
@@ -50,7 +43,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.0",
-    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-node-resolve": "^15.3.1",
     "@rollup/plugin-typescript": "^11.0.0",
     "@types/node": "^24.3.0",
     "@types/react": "^19.1.10",
@@ -61,6 +54,7 @@
     "rollup-plugin-dts": "^6.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-tsconfig-paths": "^1.5.2",
     "tslib": "^2.8.1",
     "typescript": "^5.0.0"
   }
