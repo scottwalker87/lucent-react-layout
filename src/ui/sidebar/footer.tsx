@@ -1,5 +1,4 @@
-import type { FC, ReactNode } from "react"
-import type { SidebarFooterProps } from "#lib/types"
+import type { SidebarFooterComponent } from "#types"
 import { useLayoutSidebar } from "#lib/context"
 import { cn } from "#lib/utils"
 import cls from "#style/sidebar.module.css"
@@ -8,7 +7,7 @@ import cls from "#style/sidebar.module.css"
  * Футер сайдбара
  * @namespace Lucent.UI.Sidebar.Footer
  */
-export const SidebarFooter: FC<SidebarFooterProps> = ({ children, collapsed }): ReactNode => {
+export const SidebarFooter: SidebarFooterComponent = ({ children, collapsed }) => {
   const { classNames } = useLayoutSidebar()
   const classes = cn(cls.sidebarFooter, collapsed && cls.collapsed, classNames.footer)
 

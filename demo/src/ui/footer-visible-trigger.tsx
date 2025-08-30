@@ -9,7 +9,7 @@ export const FooterVisibleTrigger = () => {
 
   return (
     <Button onClick={toggleFooterVisibleMode}>
-      {isFooterHidden() ? (
+      {isFooterHidden ? (
         <PanelBottomOpen size={iconSize} strokeWidth={iconStroke} />
       ) : (
         <PanelBottomClose size={iconSize} strokeWidth={iconStroke} />

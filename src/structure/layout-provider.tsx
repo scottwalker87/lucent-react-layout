@@ -1,15 +1,20 @@
-import { useState, useCallback, type FC, type ReactNode } from "react"
+import { useState, useCallback, type ReactNode } from "react"
 import type {
-  LayoutProviderProps,
   LayoutApi,
-  LayoutModes,
-  LayoutSlots,
   LayoutMode,
   LayoutModeValue,
   LayoutSlot,
-  LayoutSizes,
-  LayoutClassNames
-} from "#lib/types"
+  LayoutNormalizedModes,
+  LayoutNormalizedParams,
+  LayoutNormalizedClassNames,
+  LayoutNormalizedSlots,
+  LayoutParam,
+  LayoutParamValue,
+  LayoutClassName,
+  LayoutClassNameValue,
+  LayoutParams,
+  LayoutProviderComponent
+} from "#types"
 import {
   THEME_MODE_LIGHT,
   THEME_MODE_DARK,
@@ -31,92 +36,147 @@ import { normalizeConfig } from "#lib/utils"
  * Провайдер макета
  * @namespace Lucent.Structure.Provider
  */
-export const LayoutProvider: FC<LayoutProviderProps> = ({ children, config }): ReactNode => {
-  const defaultConfig = normalizeConfig(config)
+export const LayoutProvider: LayoutProviderComponent = ({ children, config }) => {
+  const startedConfig = normalizeConfig(config)
 
-  const [modes, setModes] = useState<LayoutModes>(defaultConfig.modes)
-  const [sizes] = useState<LayoutSizes>(defaultConfig.sizes)
-  const [classNames, setClassNames] = useState<LayoutClassNames>(defaultConfig.classNames)
-  const [slots, setSlots] = useState<LayoutSlots>(defaultConfig.slots)
+  const [modes, setStateModes] = useState<LayoutNormalizedModes>(startedConfig.modes)
+  const [params, setStateParams] = useState<LayoutNormalizedParams>(startedConfig.params)
+  const [classNames, setStateClassNames] = useState<LayoutNormalizedClassNames>(startedConfig.classNames)
+  const [slots, setStateSlots] = useState<LayoutNormalizedSlots>(startedConfig.slots)
+
+  // Проверки режимов макета
+  const isThemeDark = modes.theme === THEME_MODE_DARK
+  const isHeaderHidden = modes.header === HEADER_MODE_HIDDEN
+  const isFooterHidden = modes.footer === FOOTER_MODE_HIDDEN
+  const isSidebarHidden = modes.sidebar === SIDEBAR_MODE_HIDDEN
+  const isSidebarCollapsed = modes.sidebar === SIDEBAR_MODE_COLLAPSED
+  const isInfobarHidden = modes.infobar === INFOBAR_MODE_HIDDEN
+  const isInfobarCollapsed = modes.infobar === INFOBAR_MODE_COLLAPSED
+
+  // Проверки наличия видимых слотов макета
+  const hasHeader = !!slots.header && !isHeaderHidden
+  const hasFooter = !!slots.footer && !isFooterHidden
+  const hasSidebar = !!slots.sidebar && !isSidebarHidden
+  const hasInfobar = !!slots.infobar && !isInfobarHidden
 
   /**
    * Установить режим
    * @param {LayoutMode} mode - название режима
    * @param {LayoutModeValue} value - значение режима
    */
-  const setMode = (mode: LayoutMode, value: LayoutModeValue) => {
-    setModes(prev => ({ ...prev, [mode]: value }))
-  }
+  const setMode = useCallback(
+    (mode: LayoutMode, value: LayoutModeValue) => {
+      setStateModes(prev => ({ ...prev, [mode]: value }))
+    },
+    [setStateModes]
+  )
+
+  /**
+   * Установить параметр
+   * @param {LayoutParams} params - параметры
+   * @returns {void}
+   */
+  const setParams = useCallback(
+    (params: LayoutParams) => {
+      setStateParams(prev => ({ ...prev, ...params }))
+    },
+    [setStateParams]
+  )
+
+  /**
+   * Установить параметр
+   * @param {LayoutParam} name - название параметра
+   * @param {LayoutParamValue} value - значение параметра
+   */
+  const setParam = useCallback(
+    (name: LayoutParam, value: LayoutParamValue) => {
+      setStateParams(prev => ({ ...prev, [name]: value }))
+    },
+    [setStateParams]
+  )
 
   /**
    * Установить слот
    * @param {LayoutSlot} slot - название слота
    * @param {ReactNode} value - значение слота
    */
-  const setSlot = useCallback((slot: LayoutSlot, value: ReactNode) => {
-    setSlots(prev => ({ ...prev, [slot]: value }))
-  }, [])
+  const setSlot = useCallback(
+    (slot: LayoutSlot, value: ReactNode) => {
+      setStateSlots(prev => ({ ...prev, [slot]: value }))
+    },
+    [setStateSlots]
+  )
 
   /**
    * Установить CSS-класс
-   * @param {keyof LayoutClassNames} name - название класса
-   * @param {string} value - значение класса
+   * @param {LayoutClassName} name - название класса
+   * @param {LayoutClassNameValue} value - значение класса
    */
-  const setClassName = useCallback((name: keyof LayoutClassNames, value: string) => {
-    setClassNames(prev => ({ ...prev, [name]: value }))
-  }, [])
+  const setClassName = useCallback(
+    (name: LayoutClassName, value: LayoutClassNameValue) => {
+      setStateClassNames(prev => ({ ...prev, [name]: value }))
+    },
+    [setStateClassNames]
+  )
 
-  // Проверки режимов макета
-  const isThemeDark = () => modes.theme === THEME_MODE_DARK
-  const isHeaderHidden = () => modes.header === HEADER_MODE_HIDDEN
-  const isFooterHidden = () => modes.footer === FOOTER_MODE_HIDDEN
-  const isSidebarHidden = () => modes.sidebar === SIDEBAR_MODE_HIDDEN
-  const isSidebarCollapsed = () => modes.sidebar === SIDEBAR_MODE_COLLAPSED
-  const isInfobarHidden = () => modes.infobar === INFOBAR_MODE_HIDDEN
-  const isInfobarCollapsed = () => modes.infobar === INFOBAR_MODE_COLLAPSED
+  /**
+   * Переключить режим темы
+   */
+  const toggleThemeMode = useCallback(
+    () => setMode("theme", isThemeDark ? THEME_MODE_LIGHT : THEME_MODE_DARK),
+    [isThemeDark, setMode]
+  )
 
-  // Проверки наличия видимых слотов макета
-  const hasHeader = () => !!slots.header && !isHeaderHidden()
-  const hasFooter = () => !!slots.footer && !isFooterHidden()
-  const hasSidebar = () => !!slots.sidebar && !isSidebarHidden()
-  const hasInfobar = () => !!slots.infobar && !isInfobarHidden()
+  /**
+   * Переключить режим видимости шапки
+   */
+  const toggleHeaderVisibleMode = useCallback(() => {
+    setMode("header", isHeaderHidden ? HEADER_MODE_BASE : HEADER_MODE_HIDDEN)
+  }, [isHeaderHidden, setMode])
 
-  // Переключатели режимов макета
-  const toggleThemeMode = () => setMode("theme", isThemeDark() ? THEME_MODE_LIGHT : THEME_MODE_DARK)
-  const toggleHeaderVisibleMode = () => {
-    setMode("header", isHeaderHidden() ? HEADER_MODE_BASE : HEADER_MODE_HIDDEN)
-  }
-  const toggleFooterVisibleMode = () => {
-    setMode("footer", isFooterHidden() ? FOOTER_MODE_BASE : FOOTER_MODE_HIDDEN)
-  }
-  const toggleSidebarVisibleMode = () => {
-    setMode("sidebar", isSidebarHidden() ? SIDEBAR_MODE_BASE : SIDEBAR_MODE_HIDDEN)
-  }
-  const toggleSidebarCollapsedMode = () => {
-    setMode("sidebar", isSidebarCollapsed() ? SIDEBAR_MODE_BASE : SIDEBAR_MODE_COLLAPSED)
-  }
-  const toggleInfobarVisibleMode = () => {
-    setMode("infobar", isInfobarHidden() ? INFOBAR_MODE_BASE : INFOBAR_MODE_HIDDEN)
-  }
-  const toggleInfobarCollapsedMode = () => {
-    setMode("infobar", isInfobarCollapsed() ? INFOBAR_MODE_BASE : INFOBAR_MODE_COLLAPSED)
-  }
+  /**
+   * Переключить режим видимости футера
+   */
+  const toggleFooterVisibleMode = useCallback(() => {
+    setMode("footer", isFooterHidden ? FOOTER_MODE_BASE : FOOTER_MODE_HIDDEN)
+  }, [isFooterHidden, setMode])
 
-  // API макета
+  /**
+   * Переключить режим видимости сайдбара
+   */
+  const toggleSidebarVisibleMode = useCallback(() => {
+    setMode("sidebar", isSidebarHidden ? SIDEBAR_MODE_BASE : SIDEBAR_MODE_HIDDEN)
+  }, [isSidebarHidden, setMode])
+
+  /**
+   * Переключить режим свернутости сайдбара
+   */
+  const toggleSidebarCollapsedMode = useCallback(() => {
+    setMode("sidebar", isSidebarCollapsed ? SIDEBAR_MODE_BASE : SIDEBAR_MODE_COLLAPSED)
+  }, [isSidebarCollapsed, setMode])
+
+  /**
+   * Переключить режим видимости инфобара
+   */
+  const toggleInfobarVisibleMode = useCallback(() => {
+    setMode("infobar", isInfobarHidden ? INFOBAR_MODE_BASE : INFOBAR_MODE_HIDDEN)
+  }, [isInfobarHidden, setMode])
+
+  /**
+   * Переключить режим свернутости инфобара
+   */
+  const toggleInfobarCollapsedMode = useCallback(() => {
+    setMode("infobar", isInfobarCollapsed ? INFOBAR_MODE_BASE : INFOBAR_MODE_COLLAPSED)
+  }, [isInfobarCollapsed, setMode])
+
+  /**
+   * API макета
+   */
   const api: LayoutApi = {
     modes,
-    sizes,
+    params,
     slots,
     classNames,
-
-    setMode,
-    setSlot,
-    setClassName,
-
-    hasHeader,
-    hasFooter,
-    hasSidebar,
-    hasInfobar,
 
     isThemeDark,
     isHeaderHidden,
@@ -125,6 +185,17 @@ export const LayoutProvider: FC<LayoutProviderProps> = ({ children, config }): R
     isSidebarHidden,
     isInfobarCollapsed,
     isInfobarHidden,
+
+    hasHeader,
+    hasFooter,
+    hasSidebar,
+    hasInfobar,
+
+    setMode,
+    setParams,
+    setParam,
+    setSlot,
+    setClassName,
 
     toggleThemeMode,
     toggleHeaderVisibleMode,

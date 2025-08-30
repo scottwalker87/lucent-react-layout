@@ -4,8 +4,7 @@ import { Menu } from "../ui/menu"
 import "./lucent.css"
 
 export const Sidebar = () => {
-  const { isSidebarCollapsed } = useLayout()
-  const compact = isSidebarCollapsed()
+  const { isSidebarCollapsed: compact } = useLayout()
   const sidebarClass = ["sidebar", compact && "collapsed"].join(" ")
 
   return (

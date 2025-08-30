@@ -9,7 +9,7 @@ export const SidebarVisibleTrigger = () => {
 
   return (
     <Button onClick={toggleSidebarVisibleMode}>
-      {isSidebarHidden() ? (
+      {isSidebarHidden ? (
         <PanelLeftOpen size={iconSize} strokeWidth={iconStroke} />
       ) : (
         <PanelLeftClose size={iconSize} strokeWidth={iconStroke} />

@@ -9,7 +9,7 @@ export const InfobarCollapseTrigger = () => {
 
   return (
     <Button onClick={toggleInfobarCollapsedMode}>
-      {isInfobarCollapsed() ? (
+      {isInfobarCollapsed ? (
         <ArrowLeftToLine size={iconSize} strokeWidth={iconStroke} />
       ) : (
         <ArrowRightToLine size={iconSize} strokeWidth={iconStroke} />

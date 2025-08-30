@@ -1,21 +1,21 @@
-import { type FC, useEffect } from "react"
-import { type LayoutClassNames, type LayoutSlotProps } from "#lib/types"
+import { useEffect } from "react"
+import type { LayoutSlotComponent, LayoutClassName, LayoutApi } from "#types"
 import { useLayout } from "#lib/context"
 
 /**
  * Слот для элемента макета
  * @namespace Lucent.LayoutSlot
  */
-export const LayoutSlot: FC<LayoutSlotProps> = ({ name, children, className }) => {
-  const { setSlot, setClassName } = useLayout()
+export const LayoutSlot: LayoutSlotComponent = ({ name, children, className }) => {
+  const { setSlot, setClassName } = useLayout() as LayoutApi
 
   useEffect(() => {
     setSlot(name, children)
-    setClassName(name as keyof LayoutClassNames, className ?? "")
+    setClassName(name as LayoutClassName, className ?? "")
 
     return () => {
       setSlot(name, null)
-      setClassName(name as keyof LayoutClassNames, "")
+      setClassName(name as LayoutClassName, "")
     }
   }, [name, children, className, setSlot, setClassName])
 

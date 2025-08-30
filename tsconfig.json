@@ -16,10 +16,10 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "#/*": ["src/*"],
-      "#structure/*": ["src/structure/*"],
+      "#types": ["src/types/index.ts"],
+      "#structure": ["src/structure/index.ts"],
+      "#ui": ["src/ui/index.ts"],
       "#lib/*": ["src/lib/*"],
-      "#ui/*": ["src/ui/*"],
       "#style/*": ["src/style/*"]
     }
   },

@@ -1,12 +1,12 @@
-import { useState, useCallback, type FC, type ReactNode } from "react"
-import type { SidebarProviderProps, SidebarSlot, SidebarSlots, LayoutSidebarApi, SidebarClassNames } from "#lib/types"
-import { LayoutSidebarContext } from "#lib/context"
+import { useState, useCallback, type ReactNode } from "react"
+import type { SidebarProviderComponent, SidebarSlot, SidebarSlots, SidebarApi, SidebarClassNames } from "#types"
+import { SidebarContext } from "#lib/context"
 
 /**
  * Провайдер сайдбара
  * @namespace Lucent.Structure.SidebarProvider
  */
-export const SidebarProvider: FC<SidebarProviderProps> = ({ children }): ReactNode => {
+export const SidebarProvider: SidebarProviderComponent = ({ children }) => {
   const [slots, setSlots] = useState<SidebarSlots>({
     header: null,
     body: null,
@@ -17,6 +17,10 @@ export const SidebarProvider: FC<SidebarProviderProps> = ({ children }): ReactNo
     body: "",
     footer: ""
   })
+
+  // Проверки наличия видимых слотов макета
+  const hasHeader = !!slots.header
+  const hasFooter = !!slots.footer
 
   /**
    * Установить слот
@@ -36,21 +40,15 @@ export const SidebarProvider: FC<SidebarProviderProps> = ({ children }): ReactNo
     setClassNames(prev => ({ ...prev, [name]: value }))
   }, [])
 
-  // Проверки наличия видимых слотов макета
-  const hasHeader = () => !!slots.header
-  const hasFooter = () => !!slots.footer
-
   // API сайдбара
-  const api: LayoutSidebarApi = {
+  const api: SidebarApi = {
     slots,
     classNames,
-
-    setClassName,
-    setSlot,
-
     hasHeader,
-    hasFooter
+    hasFooter,
+    setClassName,
+    setSlot
   }
 
-  return <LayoutSidebarContext.Provider value={api}>{children}</LayoutSidebarContext.Provider>
+  return <SidebarContext.Provider value={api}>{children}</SidebarContext.Provider>
 }

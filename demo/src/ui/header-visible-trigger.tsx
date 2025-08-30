@@ -9,7 +9,7 @@ export const HeaderVisibleTrigger = () => {
 
   return (
     <Button onClick={toggleHeaderVisibleMode}>
-      {isHeaderHidden() ? (
+      {isHeaderHidden ? (
         <PanelTopOpen size={iconSize} strokeWidth={iconStroke} />
       ) : (
         <PanelTopClose size={iconSize} strokeWidth={iconStroke} />

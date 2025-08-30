@@ -9,7 +9,7 @@ export const InfobarVisibleTrigger = () => {
 
   return (
     <Button onClick={toggleInfobarVisibleMode}>
-      {isInfobarHidden() ? (
+      {isInfobarHidden ? (
         <PanelRightOpen size={iconSize} strokeWidth={iconStroke} />
       ) : (
         <PanelRightClose size={iconSize} strokeWidth={iconStroke} />

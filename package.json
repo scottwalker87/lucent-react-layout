@@ -18,10 +18,10 @@
   ],
   "type": "module",
   "imports": {
-    "#/*": "./src/*",
-    "#structure/*": "./src/structure/*",
+    "#types": "./src/types/index.ts",
+    "#structure": "./src/structure/index.ts",
+    "#ui": "./src/ui/index.ts",
     "#lib/*": "./src/lib/*",
-    "#ui/*": "./src/ui/*",
     "#style/*": "./src/style/*"
   },
   "scripts": {
@@ -31,7 +31,9 @@
     "prepare": "npm run clean && npm run build",
     "commit": "git add . && git commit -m \"chore: build for release\"",
     "push": "git push && git push --tags",
-    "patch": "npm run prepare && npm run commit && npm version patch && npm publish --access public && npm run push"
+    "rel:patch": "npm run prepare && npm run commit && npm version patch && npm publish --access public && npm run push",
+    "rel:minor": "npm run prepare && npm run commit && npm version minor && npm publish --access public && npm run push",
+    "rel:major": "npm run prepare && npm run commit && npm version major && npm publish --access public && npm run push"
   },
   "keywords": [
     "react",

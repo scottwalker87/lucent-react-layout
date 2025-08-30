@@ -1,8 +1,6 @@
-import type { ReactNode } from "react"
-import type { SidebarBuilderComponent, SidebarBuilderElementProps } from "#lib/types"
-import { SidebarSlot } from "#/structure/sidebar-slot"
-import { SidebarProvider } from "#/structure/sidebar-provider"
-import { SidebarContainer } from "#/ui/sidebar/container"
+import type { SidebarBuilderComponent, SidebarBuilderElementProps } from "#types"
+import { SidebarProvider, SidebarSlot } from "#structure"
+import { SidebarContainer } from "#ui"
 
 /**
  * Конструктор сайдбара
@@ -17,21 +15,21 @@ const SidebarBuilder: SidebarBuilderComponent = ({ children, ...props }) => {
 }
 
 // Элементы конструктора сайдбара
-SidebarBuilder.Header = ({ children, ...props }: SidebarBuilderElementProps): ReactNode => {
+SidebarBuilder.Header = ({ children, ...props }: SidebarBuilderElementProps) => {
   return (
     <SidebarSlot name="header" {...props}>
       {children}
     </SidebarSlot>
   )
 }
-SidebarBuilder.Body = ({ children, ...props }: SidebarBuilderElementProps): ReactNode => {
+SidebarBuilder.Body = ({ children, ...props }: SidebarBuilderElementProps) => {
   return (
     <SidebarSlot name="body" {...props}>
       {children}
     </SidebarSlot>
   )
 }
-SidebarBuilder.Footer = ({ children, ...props }: SidebarBuilderElementProps): ReactNode => {
+SidebarBuilder.Footer = ({ children, ...props }: SidebarBuilderElementProps) => {
   return (
     <SidebarSlot name="footer" {...props}>
       {children}

@@ -20,7 +20,7 @@ export const Lucent = ({ children }: { children?: ReactNode }) => {
       infobarVisible: "visible",
       infobarCollapsed: "expanded"
     },
-    sizes: {
+    params: {
       sidebarWidth: "15.625rem",
       sidebarCollapsedWidth: "3.125rem",
       sidebarHeaderHeight: "3.125rem",

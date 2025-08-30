@@ -9,7 +9,7 @@ export const SidebarCollapseTrigger = () => {
 
   return (
     <Button onClick={toggleSidebarCollapsedMode}>
-      {isSidebarCollapsed() ? (
+      {isSidebarCollapsed ? (
         <ArrowRightToLine size={iconSize} strokeWidth={iconStroke} />
       ) : (
         <ArrowLeftToLine size={iconSize} strokeWidth={iconStroke} />
