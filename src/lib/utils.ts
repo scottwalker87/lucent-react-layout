@@ -89,8 +89,6 @@ export const normalizeParams = (params: LayoutParams): LayoutNormalizedParams =>
     footerHeight: params.footerHeight ?? "3.125rem",
     sidebarWidth: params.sidebarWidth ?? "15.625rem",
     sidebarCollapsedWidth: params.sidebarCollapsedWidth ?? "3.125rem",
-    sidebarHeaderHeight: params.sidebarHeaderHeight ?? "3.125rem",
-    sidebarFooterHeight: params.sidebarFooterHeight ?? "3.125rem",
     infobarWidth: params.infobarWidth ?? "15.625rem",
     infobarCollapsedWidth: params.infobarCollapsedWidth ?? "3.125rem",
     transitionDuration: params.transitionDuration ?? "0.15s"
@@ -178,16 +176,12 @@ export const calcStyles = (context: LayoutApi): CSSProperties => {
   const headerHeight = hasHeader ? params.headerHeight : "0rem"
   const footerHeight = hasFooter ? params.footerHeight : "0rem"
   const sidebarWidth = calcSidebarWidth()
-  const sidebarHeaderHeight = params.sidebarHeaderHeight
-  const sidebarFooterHeight = params.sidebarFooterHeight
   const infobarWidth = calcInfobarWidth()
 
   return {
     "--ll-header-height": headerHeight,
     "--ll-footer-height": footerHeight,
     "--ll-sidebar-width": sidebarWidth,
-    "--ll-sidebar-header-height": sidebarHeaderHeight,
-    "--ll-sidebar-footer-height": sidebarFooterHeight,
     "--ll-infobar-width": infobarWidth,
     "--ll-transition-duration": params.transitionDuration
   } as CSSProperties
