@@ -3,10 +3,13 @@ import cls from "./button.module.css"
 
 export const Button = ({
   children,
+  className,
   ...props
 }: { children: ReactNode | string } & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
+  const classes = [cls.button, className].join(" ")
+
   return (
-    <button className={cls.button} {...props}>
+    <button className={classes} {...props}>
       {children}
     </button>
   )

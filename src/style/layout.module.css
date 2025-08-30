@@ -1,120 +1,98 @@
 /* Lucent CSS: Layout */
 
-/* Main layout container */
+/* Контейнер макета */
 
 .container {
-  --ll-header-area: "sidebar header header";
-  --ll-body-area: "sidebar body infobar";
-  --ll-footer-area: "sidebar footer footer";
+  /* Sizes */
+  --ll-header-height: 3.125rem;
+  --ll-footer-height: 6.25rem;
+  --ll-sidebar-width: 15.625rem;
+  --ll-infobar-width: 15.625rem;
 
-  --ll-header-height: 50px;
-  --ll-footer-height: 100px;
-  --ll-sidebar-width: 250px;
-  --ll-sidebar-collapsed-width: 50px;
-  --ll-sidebar-header-height: var(--ll-header-height);
-  --ll-sidebar-footer-height: var(--ll-footer-height);
-  --ll-infobar-width: 250px;
-  --ll-infobar-collapsed-width: 50px;
-
-  --ll-transition-grid-duration: 0.15s;
+  /* Transitions */
+  --ll-transition-duration: 0.15s;
 
   display: grid;
-  grid-template-areas: var(--ll-header-area) var(--ll-body-area) var(--ll-footer-area);
+  grid-template-areas:
+    "sidebar header header"
+    "sidebar body infobar"
+    "sidebar footer footer";
   grid-template-columns: var(--ll-sidebar-width) 1fr var(--ll-infobar-width);
   grid-template-rows: var(--ll-header-height) 1fr var(--ll-footer-height);
   position: fixed;
   inset: 0;
   height: 100vh;
   width: 100vw;
-  transition: grid-template-columns var(--ll-transition-grid-duration) ease-in-out,
-    grid-template-rows var(--ll-transition-grid-duration) ease-in-out;
-
-  /* Скрыт сайдбар */
-  &[data-sidebar-mode="hidden"] {
-    grid-template-columns: 0px 1fr var(--ll-infobar-width);
-  }
-  /* Свернут сайдбар */
-  &[data-sidebar-mode="collapsed"] {
-    grid-template-columns: var(--ll-sidebar-collapsed-width) 1fr var(--ll-infobar-width);
-  }
-
-  /* Скрыт инфобар */
-  &[data-infobar-mode="hidden"] {
-    grid-template-columns: var(--ll-sidebar-width) 1fr 0px;
-  }
-  /* Свернут инфобар */
-  &[data-infobar-mode="collapsed"] {
-    grid-template-columns: var(--ll-sidebar-width) 1fr var(--ll-infobar-collapsed-width);
-  }
-
-  /* Скрыты сайдбар и инфобар */
-  &[data-sidebar-mode="hidden"]&[data-infobar-mode="hidden"] {
-    grid-template-columns: 0px 1fr 0px;
-  }
-  /* Свернуты сайдбар и инфобар */
-  &[data-sidebar-mode="collapsed"]&[data-infobar-mode="collapsed"] {
-    grid-template-columns: var(--ll-sidebar-collapsed-width) 1fr var(--ll-infobar-collapsed-width);
-  }
-
-  /* Скрыт сайдбар и свернут инфобар */
-  &[data-sidebar-mode="hidden"]&[data-infobar-mode="collapsed"] {
-    grid-template-columns: 0px 1fr var(--ll-infobar-collapsed-width);
-  }
-  /* Свернут сайдбар и скрыт инфобар */
-  &[data-sidebar-mode="collapsed"]&[data-infobar-mode="hidden"] {
-    grid-template-columns: var(--ll-sidebar-collapsed-width) 1fr 0px;
-  }
-
-  /* Скрыт заголовок */
-  &[data-header-mode="hidden"] {
-    grid-template-rows: 0px 1fr var(--ll-footer-height);
-  }
-  /* Скрыты заголовок и футер */
-  &[data-header-mode="hidden"]&[data-footer-mode="hidden"] {
-    grid-template-rows: 0px 1fr 0px;
-  }
-  /* Скрыт футер */
-  &[data-footer-mode="hidden"] {
-    grid-template-rows: var(--ll-header-height) 1fr 0px;
-  }
+  transition: grid-template-columns var(--ll-transition-duration) ease-in-out,
+    grid-template-rows var(--ll-transition-duration) ease-in-out;
 }
 
-/* Header */
+/* Режимы скрытия слотов макета */
+[data-header-mode="hidden"] .header > *,
+[data-footer-mode="hidden"] .footer > *,
+[data-sidebar-mode="hidden"] .sidebar > *,
+[data-infobar-mode="hidden"] .infobar > * {
+  display: none;
+}
+
+/* Шапка */
 
 .header {
   grid-area: header;
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 10;
 
   &.hidden > * {
-    opacity: 0;
+    display: none;
   }
 }
 
-/* Body */
+/* Сайдбар */
+
+.sidebar {
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 15;
+  height: 100%;
+
+  &.hidden > * {
+    display: none;
+  }
+}
+
+/* Тело макета (основной контент) */
 
 .body {
   grid-area: body;
 }
 
-/* Infobar */
+/* Инфобар */
 
 .infobar {
   grid-area: infobar;
+  position: relative;
+  z-index: 5;
 
   &.hidden > * {
-    opacity: 0;
+    display: none;
   }
 }
 
-/* Footer */
+/* Футер */
 
 .footer {
   grid-area: footer;
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 10;
 
   &.hidden > * {
-    opacity: 0;
+    display: none;
   }
 }

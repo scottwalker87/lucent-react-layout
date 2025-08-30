@@ -10,6 +10,13 @@
   --color-foreground-extra-soft: #626b87;
   --color-foreground-hard: #000000;
 
+  --header-height: 3.125rem;
+  --footer-height: 5rem;
+  --sidebar-width: 15.625rem;
+  --sidebar-collapsed-width: 3.125rem;
+  --infobar-width: 20.625rem;
+  --infobar-collapsed-width: 3.125rem;
+
   --color-primary: #a500e7;
   --color-secondary: #ff00d4;
   --offset-x: 2rem;

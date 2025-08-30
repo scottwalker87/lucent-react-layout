@@ -1,19 +1,17 @@
-import { useState, useCallback, type ReactNode } from "react"
+import { useState, useCallback } from "react"
 import type {
   LayoutApi,
+  LayoutHasSlot,
+  LayoutHasSlotValue,
   LayoutMode,
   LayoutModeValue,
-  LayoutSlot,
   LayoutNormalizedModes,
   LayoutNormalizedParams,
-  LayoutNormalizedClassNames,
-  LayoutNormalizedSlots,
   LayoutParam,
   LayoutParamValue,
-  LayoutClassName,
-  LayoutClassNameValue,
   LayoutParams,
-  LayoutProviderComponent
+  LayoutHasSlots,
+  ProviderComponent
 } from "#types"
 import {
   THEME_MODE_LIGHT,
@@ -31,18 +29,18 @@ import {
 } from "#lib/constants"
 import { LayoutContext } from "#lib/context"
 import { normalizeConfig } from "#lib/utils"
+import { Container } from "#ui"
 
 /**
  * Провайдер макета
  * @namespace Lucent.Structure.Provider
  */
-export const LayoutProvider: LayoutProviderComponent = ({ children, config }) => {
+export const LayoutProvider: ProviderComponent = ({ children, config, ...props }) => {
   const startedConfig = normalizeConfig(config)
 
   const [modes, setStateModes] = useState<LayoutNormalizedModes>(startedConfig.modes)
   const [params, setStateParams] = useState<LayoutNormalizedParams>(startedConfig.params)
-  const [classNames, setStateClassNames] = useState<LayoutNormalizedClassNames>(startedConfig.classNames)
-  const [slots, setStateSlots] = useState<LayoutNormalizedSlots>(startedConfig.slots)
+  const [hasSlots, setHasSlots] = useState<LayoutHasSlots>(startedConfig.hasSlots)
 
   // Проверки режимов макета
   const isThemeDark = modes.theme === THEME_MODE_DARK
@@ -52,12 +50,6 @@ export const LayoutProvider: LayoutProviderComponent = ({ children, config }) =>
   const isSidebarCollapsed = modes.sidebar === SIDEBAR_MODE_COLLAPSED
   const isInfobarHidden = modes.infobar === INFOBAR_MODE_HIDDEN
   const isInfobarCollapsed = modes.infobar === INFOBAR_MODE_COLLAPSED
-
-  // Проверки наличия видимых слотов макета
-  const hasHeader = !!slots.header && !isHeaderHidden
-  const hasFooter = !!slots.footer && !isFooterHidden
-  const hasSidebar = !!slots.sidebar && !isSidebarHidden
-  const hasInfobar = !!slots.infobar && !isInfobarHidden
 
   /**
    * Установить режим
@@ -97,26 +89,14 @@ export const LayoutProvider: LayoutProviderComponent = ({ children, config }) =>
 
   /**
    * Установить слот
-   * @param {LayoutSlot} slot - название слота
-   * @param {ReactNode} value - значение слота
+   * @param {LayoutHasSlot} slot - название слота
+   * @param {LayoutHasSlotValue} value - значение слота
    */
-  const setSlot = useCallback(
-    (slot: LayoutSlot, value: ReactNode) => {
-      setStateSlots(prev => ({ ...prev, [slot]: value }))
+  const setHasSlot = useCallback(
+    (slot: LayoutHasSlot, value: LayoutHasSlotValue) => {
+      setHasSlots(prev => ({ ...prev, [slot]: value }))
     },
-    [setStateSlots]
-  )
-
-  /**
-   * Установить CSS-класс
-   * @param {LayoutClassName} name - название класса
-   * @param {LayoutClassNameValue} value - значение класса
-   */
-  const setClassName = useCallback(
-    (name: LayoutClassName, value: LayoutClassNameValue) => {
-      setStateClassNames(prev => ({ ...prev, [name]: value }))
-    },
-    [setStateClassNames]
+    [setHasSlots]
   )
 
   /**
@@ -175,8 +155,7 @@ export const LayoutProvider: LayoutProviderComponent = ({ children, config }) =>
   const api: LayoutApi = {
     modes,
     params,
-    slots,
-    classNames,
+    hasSlots,
 
     isThemeDark,
     isHeaderHidden,
@@ -186,16 +165,10 @@ export const LayoutProvider: LayoutProviderComponent = ({ children, config }) =>
     isInfobarCollapsed,
     isInfobarHidden,
 
-    hasHeader,
-    hasFooter,
-    hasSidebar,
-    hasInfobar,
-
     setMode,
     setParams,
     setParam,
-    setSlot,
-    setClassName,
+    setHasSlot,
 
     toggleThemeMode,
     toggleHeaderVisibleMode,
@@ -206,5 +179,9 @@ export const LayoutProvider: LayoutProviderComponent = ({ children, config }) =>
     toggleInfobarCollapsedMode
   }
 
-  return <LayoutContext.Provider value={api}>{children}</LayoutContext.Provider>
+  return (
+    <LayoutContext.Provider value={api}>
+      <Container {...props}>{children}</Container>
+    </LayoutContext.Provider>
+  )
 }

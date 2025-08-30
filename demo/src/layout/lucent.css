@@ -18,6 +18,9 @@
   border-block-start: var(--border);
 }
 .sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background-color: var(--color-background);
   box-shadow: var(--shadow);
 
@@ -25,8 +28,11 @@
     box-shadow: var(--shadow-small);
   }
 }
-
-.sidebarHeader {
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--header-height);
   background-color: var(--color-background-soft);
   border-block-end: var(--border);
   gap: 0.75rem;
@@ -35,16 +41,58 @@
   background: var(--gradient);
   color: var(--color-background-soft);
 }
-.sidebarBody {
+.sidebar-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--footer-height) - var(--header-height));
+}
+.sidebar-body-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding-block: var(--offset-y);
   gap: var(--offset-y);
-  padding-block-start: var(--offset-y);
 }
-.sidebarFooter {
+.sidebar-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--footer-height);
   background-color: var(--color-background-hard);
   border-block-start: var(--border);
+}
+.sidebar-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.sidebar-controls-button {
+  width: 100% !important;
+  padding: 10px !important;
+  background-color: var(--color-foreground-soft) !important;
+  color: var(--color-background-soft) !important;
+  font-size: 16px !important;
+  transition: transform 0.1s ease-in-out !important;
+  border: none !important;
+
+  &:hover {
+    transform: scale(1) !important;
+    background: var(--gradient) !important;
+  }
+  &:active {
+    transform: scale(0.93) !important;
+  }
+}
+.sidebar-divider {
+  width: 100%;
+  height: 2px;
+  margin: 10px 0;
+  background-color: var(--color-foreground-soft);
+  opacity: 0.2;
 }
 .infobar {
   padding-inline: var(--offset-x);
@@ -55,7 +103,7 @@
 
 .controls {
   position: fixed;
-  top: 120px;
+  top: calc(50% - 70px / 2);
   left: calc(50% - 440px / 2);
   display: flex;
   align-items: center;

@@ -1,14 +1,12 @@
 import type {
+  LayoutApi,
   LayoutConfig,
   LayoutNormalizedConfig,
   LayoutParams,
   LayoutNormalizedParams,
   LayoutModes,
   LayoutNormalizedModes,
-  LayoutSlots,
-  LayoutNormalizedSlots,
-  LayoutClassNames,
-  LayoutNormalizedClassNames
+  LayoutHasSlots
 } from "#types"
 import {
   THEME_MODE_LIGHT,
@@ -17,6 +15,7 @@ import {
   SIDEBAR_MODE_BASE,
   INFOBAR_MODE_BASE
 } from "#lib/constants"
+import { CSSProperties } from "react"
 
 /**
  * Тип значения класса
@@ -94,40 +93,7 @@ export const normalizeParams = (params: LayoutParams): LayoutNormalizedParams =>
     sidebarFooterHeight: params.sidebarFooterHeight ?? "3.125rem",
     infobarWidth: params.infobarWidth ?? "15.625rem",
     infobarCollapsedWidth: params.infobarCollapsedWidth ?? "3.125rem",
-    transitionGridDuration: params.transitionGridDuration ?? "0.15s"
-  }
-}
-
-/**
- * Нормализовать слоты макета
- * @param {LayoutSlots} slots Слоты макета
- * @returns {LayoutNormalizedSlots} Нормализованные слоты макета
- */
-export const normalizeSlots = (slots: LayoutSlots): LayoutNormalizedSlots => {
-  slots = slots ?? {}
-
-  return {
-    header: slots.header ?? null,
-    sidebar: slots.sidebar ?? null,
-    body: slots.body ?? null,
-    infobar: slots.infobar ?? null,
-    footer: slots.footer ?? null
-  }
-}
-
-/**
- * Нормализовать CSS-классы макета
- * @param {LayoutClassNames} classNames CSS-классы макета
- * @returns {LayoutNormalizedClassNames} Нормализованные CSS-классы макета
- */
-export const normalizeClassNames = (classNames: LayoutClassNames): LayoutNormalizedClassNames => {
-  classNames = classNames ?? {}
-
-  return {
-    header: classNames.header ?? "",
-    body: classNames.body ?? "",
-    infobar: classNames.infobar ?? "",
-    footer: classNames.footer ?? ""
+    transitionDuration: params.transitionDuration ?? "0.15s"
   }
 }
 
@@ -140,9 +106,89 @@ export const normalizeConfig = (config: LayoutConfig): LayoutNormalizedConfig =>
   config = config ?? {}
 
   const modes = normalizeModes(config.modes ?? {})
-  const slots = normalizeSlots(config.slots ?? {})
   const params = normalizeParams(config.params ?? {})
-  const classNames = normalizeClassNames(config.classNames ?? {})
+  const hasSlots: LayoutHasSlots = {
+    header: false,
+    sidebar: false,
+    body: false,
+    footer: false,
+    infobar: false
+  }
 
-  return { modes, params, slots, classNames }
+  return { modes, params, hasSlots }
+}
+
+/**
+ * Сформировать аттрибуты контейнера (для определения режимов макета)
+ * @param {LayoutApi} context Контекст макета
+ * @returns {Record<string, string>} Аттрибуты макета
+ */
+export const makeModeAttributes = (context: LayoutApi): Record<string, string> => {
+  const { modes } = context
+
+  return {
+    "data-theme-mode": modes.theme,
+    "data-header-mode": modes.header,
+    "data-footer-mode": modes.footer,
+    "data-sidebar-mode": modes.sidebar,
+    "data-infobar-mode": modes.infobar
+  }
+}
+
+/**
+ * Рассчитать стили макета (CSS переменные)
+ * @param {LayoutApi} context Контекст макета
+ * @returns {CSSProperties} Стили макета
+ */
+export const calcStyles = (context: LayoutApi): CSSProperties => {
+  const {
+    params,
+    hasSlots,
+    isHeaderHidden,
+    isFooterHidden,
+    isSidebarHidden,
+    isSidebarCollapsed,
+    isInfobarHidden,
+    isInfobarCollapsed
+  } = context
+
+  // Проверки видимости слотов макета
+  const hasHeader = hasSlots.header && !isHeaderHidden
+  const hasFooter = hasSlots.footer && !isFooterHidden
+  const hasSidebar = hasSlots.sidebar && !isSidebarHidden
+  const hasInfobar = hasSlots.infobar && !isInfobarHidden
+
+  /**
+   * Рассчитать ширину сайдбара
+   */
+  const calcSidebarWidth = () => {
+    if (!hasSidebar) return "0rem"
+
+    return isSidebarCollapsed ? params.sidebarCollapsedWidth : params.sidebarWidth
+  }
+  /**
+   * Рассчитать ширину инфобара
+   */
+  const calcInfobarWidth = () => {
+    if (!hasInfobar) return "0rem"
+
+    return isInfobarCollapsed ? params.infobarCollapsedWidth : params.infobarWidth
+  }
+
+  const headerHeight = hasHeader ? params.headerHeight : "0rem"
+  const footerHeight = hasFooter ? params.footerHeight : "0rem"
+  const sidebarWidth = calcSidebarWidth()
+  const sidebarHeaderHeight = params.sidebarHeaderHeight
+  const sidebarFooterHeight = params.sidebarFooterHeight
+  const infobarWidth = calcInfobarWidth()
+
+  return {
+    "--ll-header-height": headerHeight,
+    "--ll-footer-height": footerHeight,
+    "--ll-sidebar-width": sidebarWidth,
+    "--ll-sidebar-header-height": sidebarHeaderHeight,
+    "--ll-sidebar-footer-height": sidebarFooterHeight,
+    "--ll-infobar-width": infobarWidth,
+    "--ll-transition-duration": params.transitionDuration
+  } as CSSProperties
 }
