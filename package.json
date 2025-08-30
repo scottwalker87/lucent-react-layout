@@ -1,6 +1,6 @@
 {
   "name": "@scottwalker/lucent",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "React layout system with flexible sidebar, header, footer and infobar management",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
