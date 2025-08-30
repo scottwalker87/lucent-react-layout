@@ -17,6 +17,14 @@
     "README.md"
   ],
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scottwalker87/lucent-react-layout.git"
+  },
+  "homepage": "https://github.com/scottwalker87/lucent-react-layout#readme",
+  "bugs": {
+    "url": "https://github.com/scottwalker87/lucent-react-layout/issues"
+  },
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
