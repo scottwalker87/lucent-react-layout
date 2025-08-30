@@ -407,4 +407,4 @@ Lucent uses CSS custom properties for styling. You can override these in your CS
 
 ## License
 
-MIT License - see LICENSE file for details.
+MIT License - see [LICENSE](LICENSE) file for details.

@@ -407,4 +407,4 @@ Lucent использует CSS-переменные для стилизации
 
 ## Лицензия
 
-MIT License - см. файл LICENSE для подробностей.
+MIT License - см. файл [LICENSE](LICENSE) для подробностей.
