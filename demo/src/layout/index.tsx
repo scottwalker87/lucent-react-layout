@@ -33,7 +33,7 @@ export const LucentLayout = ({ children }: { children?: ReactNode }) => {
       sidebarCollapsedWidth: "var(--sidebar-collapsed-width)",
       infobarWidth: "var(--infobar-width)",
       infobarCollapsedWidth: "var(--infobar-collapsed-width)",
-      transitionDuration: "0.08s"
+      transitionDuration: "0.12s"
     }
   }
 

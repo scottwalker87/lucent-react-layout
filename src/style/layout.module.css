@@ -23,16 +23,36 @@
   inset: 0;
   height: 100vh;
   width: 100vw;
-  transition: grid-template-columns var(--ll-transition-duration) ease-in-out,
-    grid-template-rows var(--ll-transition-duration) ease-in-out;
+  opacity: 1;
+  transform: scaleY(1);
+
+  /* prettier-ignore */
+  transition: 
+    grid-template-columns var(--ll-transition-duration) ease-in-out,
+    grid-template-rows var(--ll-transition-duration) ease-in-out, 
+    opacity var(--ll-transition-duration) ease-in-out,
+    transform var(--ll-transition-duration) ease-in-out;
 }
 
-/* Режимы скрытия слотов макета */
+/* Содержимое элементов макета */
+.header > *,
+.footer > *,
+.sidebar > *,
+.infobar > * {
+  opacity: 1;
+
+  /* prettier-ignore */
+  transition: opacity calc(var(--ll-transition-duration) * 3) ease-in-out;
+}
+
+/* Режимы скрытия для содержимого элементов макета */
 [data-header-mode="hidden"] .header > *,
 [data-footer-mode="hidden"] .footer > *,
 [data-sidebar-mode="hidden"] .sidebar > *,
 [data-infobar-mode="hidden"] .infobar > * {
-  display: none;
+  overflow: hidden;
+  transition-duration: calc(var(--ll-transition-duration) * 0.7);
+  opacity: 0;
 }
 
 /* Шапка */
