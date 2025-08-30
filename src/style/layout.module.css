@@ -39,30 +39,16 @@
 
 .header {
   grid-area: header;
-  display: flex;
-  align-items: center;
   position: relative;
   z-index: 10;
-
-  &.hidden > * {
-    display: none;
-  }
 }
 
 /* Сайдбар */
 
 .sidebar {
   grid-area: sidebar;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   position: relative;
   z-index: 15;
-  height: 100%;
-
-  &.hidden > * {
-    display: none;
-  }
 }
 
 /* Тело макета (основной контент) */
@@ -77,22 +63,12 @@
   grid-area: infobar;
   position: relative;
   z-index: 5;
-
-  &.hidden > * {
-    display: none;
-  }
 }
 
 /* Футер */
 
 .footer {
   grid-area: footer;
-  display: flex;
-  align-items: center;
   position: relative;
   z-index: 10;
-
-  &.hidden > * {
-    display: none;
-  }
 }
