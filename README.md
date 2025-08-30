@@ -1,4 +1,15 @@
-# Lucent - React Layout System
+<div align="center">
+  <img src="logo.png" alt="Lucent Logo" width="200" />
+  <h1>LUCENT - React Layout System</h1>
+  
+  <p>
+    <span><span style="margin-right: 7px;">🇺🇸</span> English docs</span>
+    <span style="margin: 0 15px;">|</span> 
+    <a href="README.ru.md">
+      <span style="margin-right: 7px;">🇷🇺</span> Дока на русском
+    </a>
+  </p>
+</div>
 
 A flexible and powerful React layout system that provides comprehensive control over sidebar, header, footer, and infobar management with TypeScript support.
 
@@ -36,6 +47,56 @@ function App() {
 ```
 
 ## Architecture
+
+### Project Structure
+
+```
+Lucent/
+├── 📦 Package Files
+│   ├── package.json          # Main package configuration
+│   ├── rollup.config.js      # Build configuration
+│   └── tsconfig.json         # TypeScript configuration
+│
+├── 📁 src/                   # Main library source
+│   ├── index.ts              # Main entry point & exports
+│   │
+│   ├── 📁 lib/               # Core utilities & constants
+│   │   ├── constants.ts      # Layout mode constants
+│   │   ├── context.ts        # React context & useLayout hook
+│   │   └── utils.ts          # Utility functions & normalization
+│   │
+│   ├── 📁 types/             # TypeScript type definitions
+│   │   └── index.ts          # All layout types & interfaces
+│   │
+│   ├── 📁 structure/         # Core layout structure
+│   │   ├── provider.tsx      # Main LayoutProvider component
+│   │   └── index.ts          # Structure exports
+│   │
+│   ├── 📁 ui/                # Layout UI components
+│   │   ├── container.tsx     # Main layout container
+│   │   ├── header.tsx        # Header component
+│   │   ├── sidebar.tsx       # Sidebar component
+│   │   ├── body.tsx          # Main content area
+│   │   ├── infobar.tsx       # Info panel component
+│   │   ├── footer.tsx        # Footer component
+│   │   └── index.ts          # UI exports
+│   │
+│   └── 📁 style/             # Styling
+│       └── layout.module.css # CSS modules for layout
+│
+├── 📁 demo/                  # Demo application
+│   ├── src/
+│   │   ├── App.tsx           # Demo app component
+│   │   ├── main.tsx          # Demo entry point
+│   │   ├── index.css         # Demo styles
+│   │   ├── 📁 layout/        # Demo layout components
+│   │   └── 📁 ui/            # Demo UI components
+│   ├── index.html            # Demo HTML template
+│   ├── package.json          # Demo dependencies
+│   └── vite.config.ts        # Demo build config
+│
+└── 📄 README.md              # Documentation
+```
 
 ### Core Components
 
