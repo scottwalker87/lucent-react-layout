@@ -17,7 +17,7 @@ A flexible and powerful React layout system that provides comprehensive control 
 
 - ✅ **Flexible Layout Management** - Control visibility and collapse states of all layout components
 - ✅ **Theme Support** - Built-in light/dark theme switching
-- ✅ **Responsive Design** - Adaptive layout that works on all screen sizes
+- ⚠️ **Responsive Design** - Responsive design is still in development! 🙃😇
 - ✅ **TypeScript First** - Full TypeScript support with comprehensive type definitions
 - ✅ **Zero Dependencies** - No external dependencies, just React
 - ✅ **Highly Configurable** - Customizable dimensions, transitions, and behavior
