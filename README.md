@@ -399,10 +399,10 @@ Lucent uses CSS custom properties for styling. You can override these in your CS
 }
 ```
 
-## Browser Support
+## Requirements
 
 - React 18+
-- Modern browsers with CSS Grid support
+- Browsers with CSS Grid support
 - TypeScript 4.5+
 
 ## License
