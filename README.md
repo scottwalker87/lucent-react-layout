@@ -11,7 +11,7 @@
   </p>
 </div>
 
-A flexible and powerful React layout system that provides comprehensive control over sidebar, header, footer, and infobar management with TypeScript support.
+Just a layout system for React (with full TypeScript support) that can be the foundation for any custom layout... well, that's basically it (for now).
 
 ## Features
 
@@ -20,7 +20,7 @@ A flexible and powerful React layout system that provides comprehensive control 
 - ⚠️ **Responsive Design** - Responsive design is still in development! 🙃😇
 - ✅ **TypeScript First** - Full TypeScript support with comprehensive type definitions
 - ✅ **Zero Dependencies** - No external dependencies, just React
-- ✅ **Highly Configurable** - Customizable dimensions, transitions, and behavior
+- ✅ **Highly Configurable** - Customizable dimensions for layout element states
 - ✅ **Context API** - Easy state management and component communication
 
 ## Installation
@@ -51,12 +51,7 @@ function App() {
 ### Project Structure
 
 ```
-Lucent/
-├── 📦 Package Files
-│   ├── package.json          # Main package configuration
-│   ├── rollup.config.js      # Build configuration
-│   └── tsconfig.json         # TypeScript configuration
-│
+📦 Lucent/
 ├── 📁 src/                   # Main library source
 │   ├── index.ts              # Main entry point & exports
 │   │
@@ -77,25 +72,14 @@ Lucent/
 │   │   ├── header.tsx        # Header component
 │   │   ├── sidebar.tsx       # Sidebar component
 │   │   ├── body.tsx          # Main content area
-│   │   ├── infobar.tsx       # Info panel component
+│   │   ├── infobar.tsx       # Info panel component (right side)
 │   │   ├── footer.tsx        # Footer component
 │   │   └── index.ts          # UI exports
 │   │
 │   └── 📁 style/             # Styling
 │       └── layout.module.css # CSS modules for layout
 │
-├── 📁 demo/                  # Demo application
-│   ├── src/
-│   │   ├── App.tsx           # Demo app component
-│   │   ├── main.tsx          # Demo entry point
-│   │   ├── index.css         # Demo styles
-│   │   ├── 📁 layout/        # Demo layout components
-│   │   └── 📁 ui/            # Demo UI components
-│   ├── index.html            # Demo HTML template
-│   ├── package.json          # Demo dependencies
-│   └── vite.config.ts        # Demo build config
-│
-└── 📄 README.md              # Documentation
+└── 📁 demo/                  # Demo application (very raw for now, but it works... hehe 😁)
 ```
 
 ### Core Components
@@ -103,11 +87,11 @@ Lucent/
 Lucent is built around a central layout provider that manages the state and behavior of all layout components:
 
 - **`Lucent`** - Main layout provider component
-- **`LucentHeader`** - Top header component
-- **`LucentSidebar`** - Left sidebar component
+- **`LucentHeader`** - Header component
+- **`LucentSidebar`** - Sidebar component
 - **`LucentBody`** - Main content area
 - **`LucentInfobar`** - Right infobar component
-- **`LucentFooter`** - Bottom footer component
+- **`LucentFooter`** - Footer component
 
 ### State Management
 
@@ -133,7 +117,7 @@ function MyComponent() {
 
 ### Layout Modes
 
-Each layout component can be in different modes:
+Each layout component can be in different modes (expanded, collapsed, or hidden). The layout itself can be in light or dark mode (basic theming):
 
 #### Theme Mode
 
@@ -153,18 +137,18 @@ Each layout component can be in different modes:
 #### Sidebar Mode
 
 - `base` - Fully expanded sidebar
-- `collapsed` - Collapsed sidebar (shows icons only)
+- `collapsed` - Collapsed sidebar
 - `hidden` - Hidden sidebar
 
 #### Infobar Mode
 
 - `base` - Fully expanded infobar
-- `collapsed` - Collapsed infobar (shows icons only)
+- `collapsed` - Collapsed infobar
 - `hidden` - Hidden infobar
 
 ### Layout Parameters
 
-Customize the appearance and behavior of your layout:
+Layout appearance settings:
 
 ```tsx
 const config = {
@@ -201,7 +185,7 @@ const defaultParams = {
 }
 ```
 
-## API Reference
+## API
 
 ### useLayout Hook
 
@@ -232,7 +216,7 @@ const layout = useLayout()
 - `setMode(mode, value)` - Set a specific mode
 - `setParams(params)` - Update multiple parameters
 - `setParam(name, value)` - Update a single parameter
-- `setHasSlot(slot, value)` - Mark a slot as rendered
+- `setHasSlot(slot, value)` - Mark layout element state as rendered (or not rendered)
 
 #### Toggle Methods
 
@@ -255,7 +239,7 @@ function App() {
   return (
     <Lucent config={{}}>
       <LucentHeader>
-        <h1>My Application</h1>
+        <h1>Company for Delivering Troubles</h1>
       </LucentHeader>
 
       <LucentSidebar>
@@ -269,14 +253,14 @@ function App() {
       </LucentSidebar>
 
       <LucentBody>
-        <main>
+        <div>
           <h2>Welcome to your dashboard</h2>
           <p>This is the main content area.</p>
-        </main>
+        </div>
       </LucentBody>
 
       <LucentFooter>
-        <p>&copy; 2024 My Application</p>
+        <p>&copy; 2025 Company for Delivering Troubles</p>
       </LucentFooter>
     </Lucent>
   )
@@ -375,7 +359,7 @@ function LayoutControls() {
 
 ## CSS Customization
 
-Lucent uses CSS custom properties for styling. You can override these in your CSS:
+Lucent uses CSS custom properties and specific layout mode attributes for styling. You can override these in your CSS:
 
 ```css
 /* Custom theme colors */
@@ -407,4 +391,4 @@ Lucent uses CSS custom properties for styling. You can override these in your CS
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+MIT License - see [LICENSE](LICENSE) file for super details (which nobody reads... including me 😇).
