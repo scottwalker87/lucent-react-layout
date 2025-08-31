@@ -1,5 +1,5 @@
 export type * from "./types"
-export type * from "./lib/constants"
+export * from "./lib/constants"
 
 export { useLayout } from "./lib/context"
 export { LayoutProvider as Lucent } from "./structure"
