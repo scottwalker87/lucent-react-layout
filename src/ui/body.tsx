@@ -9,10 +9,14 @@ import cls from "../style/layout.module.css"
  * @namespace Lucent.UI.Body
  */
 export const Body: BodyComponent = ({ children, className, ...props }) => {
-  const { setHasSlot } = useLayout()
+  const { setHasSlot, unsetHasSlot } = useLayout()
   const classes = cn(cls.body, className)
 
-  useLayoutEffect(() => setHasSlot("body", true), [setHasSlot])
+  useLayoutEffect(() => {
+    setHasSlot("body")
+
+    return () => unsetHasSlot("body")
+  }, [setHasSlot, unsetHasSlot])
 
   return (
     <div className={classes} {...props}>

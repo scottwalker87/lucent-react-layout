@@ -9,10 +9,14 @@ import cls from "../style/layout.module.css"
  * @namespace Lucent.UI.Header
  */
 export const Header: HeaderComponent = ({ children, className, ...props }) => {
-  const { setHasSlot } = useLayout()
+  const { setHasSlot, unsetHasSlot } = useLayout()
   const classes = cn(cls.header, className)
 
-  useLayoutEffect(() => setHasSlot("header", true), [setHasSlot])
+  useLayoutEffect(() => {
+    setHasSlot("header")
+
+    return () => unsetHasSlot("header")
+  }, [setHasSlot, unsetHasSlot])
 
   return (
     <header className={classes} {...props}>

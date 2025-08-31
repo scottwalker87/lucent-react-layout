@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { ReactNode, useState } from "react"
 import {
   Lucent,
   LucentHeader,
@@ -9,15 +9,15 @@ import {
   type LayoutConfig
 } from "@scottwalker/lucent"
 import { Sidebar } from "./sidebar"
-import { SidebarVisibleTrigger } from "../ui/sidebar-visible-trigger"
-import { SidebarCollapseTrigger } from "../ui/sidebar-collapse-trigger"
-import { InfobarVisibleTrigger } from "../ui/infobar-visible-trigger"
-import { InfobarCollapseTrigger } from "../ui/infobar-collapse-trigger"
-import { HeaderVisibleTrigger } from "../ui/header-visible-trigger"
-import { FooterVisibleTrigger } from "../ui/footer-visible-trigger"
+import { Header } from "./header"
+import { Body } from "./body"
+import { Infobar } from "./infobar"
+import { Controls } from "./controls"
+import { Footer } from "./footer"
 import "./lucent.css"
 
 export const LucentLayout = ({ children }: { children?: ReactNode }) => {
+  const [infobarContent, setInfobarContent] = useState("Infobar content here...")
   const config: LayoutConfig = {
     modes: {
       theme: "light",
@@ -37,10 +37,14 @@ export const LucentLayout = ({ children }: { children?: ReactNode }) => {
     }
   }
 
+  const toggleInfobarContent = () => {
+    setInfobarContent(infobarContent ? "" : "Infobar content here...")
+  }
+
   return (
     <Lucent config={config} className="layout">
       <LucentHeader className="header">
-        <div>Header</div>
+        <Header />
       </LucentHeader>
 
       <LucentSidebar>
@@ -48,27 +52,18 @@ export const LucentLayout = ({ children }: { children?: ReactNode }) => {
       </LucentSidebar>
 
       <LucentBody className="body scrollable">
-        {children}
-
-        <div className="controls">
-          <HeaderVisibleTrigger />
-          <div className="controls-divider" />
-          <FooterVisibleTrigger />
-          <div className="controls-divider" />
-          <SidebarVisibleTrigger />
-          <SidebarCollapseTrigger />
-          <div className="controls-divider" />
-          <InfobarVisibleTrigger />
-          <InfobarCollapseTrigger />
-        </div>
+        <Body>{children}</Body>
+        <Controls onToggleInfobarContent={toggleInfobarContent} />
       </LucentBody>
 
-      <LucentInfobar className="infobar">
-        <div>Infobar</div>
-      </LucentInfobar>
+      {infobarContent && (
+        <LucentInfobar>
+          <Infobar>{infobarContent}</Infobar>
+        </LucentInfobar>
+      )}
 
       <LucentFooter className="footer">
-        <div>Footer</div>
+        <Footer />
       </LucentFooter>
     </Lucent>
   )

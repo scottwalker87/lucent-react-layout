@@ -10,10 +10,13 @@
   --color-foreground-extra-soft: #626b87;
   --color-foreground-hard: #000000;
 
-  --header-height: 3.125rem;
+  --color-absolute-white: #ffffff;
+  --color-absolute-black: #000000;
+
+  --header-height: 5rem;
   --footer-height: 5rem;
   --sidebar-width: 15.625rem;
-  --sidebar-collapsed-width: 3.125rem;
+  --sidebar-collapsed-width: 5rem;
   --infobar-width: 20.625rem;
   --infobar-collapsed-width: 3.125rem;
 
@@ -26,6 +29,23 @@
   --shadow: 1rem 2rem 7rem -1.5rem rgba(0, 50, 125, 0.2);
   --shadow-small: 0.5rem 1rem 3rem -0.5rem rgba(0, 50, 125, 0.2);
   --border: 0.0625rem solid var(--color-background-hard);
+}
+
+[data-theme-mode="dark"] {
+  --color-background: #333640;
+  --color-background-soft: #474c5b;
+  --color-background-extra-hard: #626b87;
+  --color-background-hard: #000000;
+
+  --color-foreground: #f6f5f8;
+  --color-foreground-soft: #ffffff;
+  --color-foreground-extra-soft: #d1cbdb;
+  --color-foreground-hard: #eae7f1;
+
+  --border: 0.0625rem solid transparent;
+
+  --shadow: 1rem 2rem 7rem -1.5rem rgb(0, 0, 0, 0.5);
+  --shadow-small: 0.5rem 1rem 3rem rgb(0, 0, 0, 0.5);
 }
 
 body {

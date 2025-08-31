@@ -9,10 +9,14 @@ import cls from "../style/layout.module.css"
  * @namespace Lucent.UI.Sidebar
  */
 export const Sidebar: SidebarComponent = ({ children, className, ...props }) => {
-  const { setHasSlot } = useLayout()
+  const { setHasSlot, unsetHasSlot } = useLayout()
   const classes = cn(cls.sidebar, className)
 
-  useLayoutEffect(() => setHasSlot("sidebar", true), [setHasSlot])
+  useLayoutEffect(() => {
+    setHasSlot("sidebar")
+
+    return () => unsetHasSlot("sidebar")
+  }, [setHasSlot, unsetHasSlot])
 
   return (
     <aside className={classes} {...props}>

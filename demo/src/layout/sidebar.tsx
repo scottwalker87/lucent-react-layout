@@ -2,20 +2,21 @@ import { useLayout } from "@scottwalker/lucent"
 import { Logo } from "../ui/logo"
 import { Menu } from "../ui/menu"
 import "./lucent.css"
-import { Button } from "../ui/button"
+// import { Button } from "../ui/button"
 
 export const Sidebar = () => {
-  const { isSidebarCollapsed: compact, setParam, params } = useLayout()
+  const { isSidebarCollapsed, isSidebarHidden } = useLayout()
+  const compact = isSidebarCollapsed || isSidebarHidden
   const sidebarClass = ["sidebar", compact ? "collapsed" : ""].join(" ")
-  const headerHeight = params.headerHeight === "6.25rem" ? "3.125rem" : "6.25rem"
-  const footerHeight = params.footerHeight === "6.25rem" ? "3.125rem" : "6.25rem"
+  // const headerHeight = params.headerHeight === "6.25rem" ? "3.125rem" : "6.25rem"
+  // const footerHeight = params.footerHeight === "6.25rem" ? "3.125rem" : "6.25rem"
 
-  const toggleHeaderHeight = () => {
-    setParam("headerHeight", headerHeight)
-  }
-  const toggleFooterHeight = () => {
-    setParam("footerHeight", footerHeight)
-  }
+  // const toggleHeaderHeight = () => {
+  //   setParam("headerHeight", headerHeight)
+  // }
+  // const toggleFooterHeight = () => {
+  //   setParam("footerHeight", footerHeight)
+  // }
 
   return (
     <div className={sidebarClass}>
@@ -27,7 +28,7 @@ export const Sidebar = () => {
         <div className="sidebar-body-content">
           <Menu compact={compact} />
           <div className="sidebar-divider" />
-          <div className="sidebar-controls">
+          {/* <div className="sidebar-controls">
             <Button className="sidebar-controls-button" onClick={toggleHeaderHeight}>
               Header Height
             </Button>
@@ -35,11 +36,11 @@ export const Sidebar = () => {
             <Button className="sidebar-controls-button" onClick={toggleFooterHeight}>
               Footer Height
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
 
-      <footer className="sidebar-footer">Sidebar Footer</footer>
+      <footer className="sidebar-footer">{compact ? "🐣" : "🐥 CypaX"}</footer>
     </div>
   )
 }

@@ -162,7 +162,7 @@ export type LayoutHasSlot = keyof LayoutHasSlots
  * Значение инициализации слота
  * @namespace Lucent.LayoutHasSlotValue
  */
-export type LayoutHasSlotValue = LayoutHasSlots[LayoutHasSlot] | null
+export type LayoutHasSlotValue = LayoutHasSlots[LayoutHasSlot]
 
 /**
  * Конфигурация макета
@@ -311,7 +311,8 @@ export type LayoutApi = {
   setMode: (mode: LayoutMode, value: LayoutModeValue) => void
   setParams: (params: LayoutParams) => void
   setParam: (name: LayoutParam, value: LayoutParamValue) => void
-  setHasSlot: (slot: LayoutHasSlot, value: LayoutHasSlotValue) => void
+  setHasSlot: (slot: LayoutHasSlot) => void
+  unsetHasSlot: (slot: LayoutHasSlot) => void
 
   // Переключатели режимов
   toggleThemeMode: () => void

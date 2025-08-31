@@ -33,13 +33,11 @@
   align-items: center;
   justify-content: center;
   height: var(--header-height);
-  background-color: var(--color-background-soft);
-  border-block-end: var(--border);
   gap: 0.75rem;
   font-weight: bold;
   text-transform: uppercase;
   background: var(--gradient);
-  color: var(--color-background-soft);
+  color: var(--color-absolute-white);
 }
 .sidebar-body {
   flex: 1;
@@ -59,9 +57,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: nowrap;
   height: var(--footer-height);
-  background-color: var(--color-background-hard);
-  border-block-start: var(--border);
+  background: var(--gradient);
+  color: var(--color-absolute-white);
+  font-size: 2rem;
+  font-weight: bold;
+  text-wrap: nowrap;
+  overflow: hidden;
 }
 .sidebar-controls {
   display: flex;
@@ -91,16 +94,27 @@
   width: 100%;
   height: 2px;
   margin: 10px 0;
-  background-color: var(--color-foreground-soft);
-  opacity: 0.2;
+  background-color: var(--color-foreground);
+  opacity: 0.1;
 }
 .infobar {
+  display: flex;
+  flex-direction: column;
   padding-inline: var(--offset-x);
   padding-block: var(--offset-y);
+  height: 100%;
   background-color: var(--color-background-soft);
   box-shadow: var(--shadow);
-}
 
+  &.collapsed {
+    box-shadow: var(--shadow-small);
+    background: var(--gradient);
+
+    & > * {
+      opacity: 0;
+    }
+  }
+}
 .controls {
   position: fixed;
   top: calc(50% - 70px / 2);

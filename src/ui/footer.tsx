@@ -9,10 +9,14 @@ import cls from "../style/layout.module.css"
  * @namespace Lucent.UI.Footer
  */
 export const Footer: FooterComponent = ({ children, className, ...props }) => {
-  const { setHasSlot } = useLayout()
+  const { setHasSlot, unsetHasSlot } = useLayout()
   const classes = cn(cls.footer, className)
 
-  useLayoutEffect(() => setHasSlot("footer", true), [setHasSlot])
+  useLayoutEffect(() => {
+    setHasSlot("footer")
+
+    return () => unsetHasSlot("footer")
+  }, [setHasSlot, unsetHasSlot])
 
   return (
     <footer className={classes} {...props}>

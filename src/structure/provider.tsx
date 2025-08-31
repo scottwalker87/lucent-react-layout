@@ -1,8 +1,6 @@
 import { useState, useCallback } from "react"
 import type {
   LayoutApi,
-  LayoutHasSlot,
-  LayoutHasSlotValue,
   LayoutMode,
   LayoutModeValue,
   LayoutNormalizedModes,
@@ -11,6 +9,7 @@ import type {
   LayoutParamValue,
   LayoutParams,
   LayoutHasSlots,
+  LayoutHasSlot,
   ProviderComponent
 } from "../types"
 import {
@@ -88,13 +87,23 @@ export const LayoutProvider: ProviderComponent = ({ children, config, ...props }
   )
 
   /**
-   * Установить слот
+   * Пометить слот как смонтированный
    * @param {LayoutHasSlot} slot - название слота
-   * @param {LayoutHasSlotValue} value - значение слота
    */
   const setHasSlot = useCallback(
-    (slot: LayoutHasSlot, value: LayoutHasSlotValue) => {
-      setHasSlots(prev => ({ ...prev, [slot]: value }))
+    (slot: LayoutHasSlot) => {
+      setHasSlots(prev => ({ ...prev, [slot]: true }))
+    },
+    [setHasSlots]
+  )
+
+  /**
+   * Пометить слот как размонтированный
+   * @param {LayoutHasSlot} slot - название слота
+   */
+  const unsetHasSlot = useCallback(
+    (slot: LayoutHasSlot) => {
+      setHasSlots(prev => ({ ...prev, [slot]: false }))
     },
     [setHasSlots]
   )
@@ -169,6 +178,7 @@ export const LayoutProvider: ProviderComponent = ({ children, config, ...props }
     setParams,
     setParam,
     setHasSlot,
+    unsetHasSlot,
 
     toggleThemeMode,
     toggleHeaderVisibleMode,
