@@ -1,4 +1,4 @@
-export type { LayoutConfig } from "./types"
+export type * from "./types"
 export { useLayout } from "./lib/context"
 export { LayoutProvider as Lucent } from "./structure"
 export {
