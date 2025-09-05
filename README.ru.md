@@ -32,15 +32,16 @@ npm install @scottwalker/lucent
 ## Быстрый старт
 
 ```tsx
-import { Lucent, LucentHeader, LucentSidebar, LucentBody, LucentFooter } from "@scottwalker/lucent"
+import { Lucent } from "@scottwalker/lucent"
 
 function App() {
   return (
     <Lucent config={{}}>
-      <LucentHeader>Содержимое заголовка</LucentHeader>
-      <LucentSidebar>Содержимое боковой панели</LucentSidebar>
-      <LucentBody>Основное содержимое</LucentBody>
-      <LucentFooter>Содержимое подвала</LucentFooter>
+      <Lucent.Header>Содержимое заголовка</Lucent.Header>
+      <Lucent.Sidebar>Содержимое боковой панели</Lucent.Sidebar>
+      <Lucent.Body>Основное содержимое</Lucent.Body>
+      <Lucent.Infobar>Информационная панель</Lucent.Infobar>
+      <Lucent.Footer>Содержимое подвала</Lucent.Footer>
     </Lucent>
   )
 }
@@ -199,7 +200,6 @@ const layout = useLayout()
 
 - `modes` - Текущие режимы макета
 - `params` - Текущие параметры макета
-- `hasSlots` - Какие компоненты макета отрендерены
 
 #### Проверки состояния
 
@@ -216,7 +216,6 @@ const layout = useLayout()
 - `setMode(mode, value)` - Установить конкретный режим
 - `setParams(params)` - Обновить несколько параметров
 - `setParam(name, value)` - Обновить один параметр
-- `setHasSlot(slot, value)` - Отметить состояние элемента макета как отрендеренного (или не отрендеренного)
 
 #### Методы переключения
 
@@ -233,16 +232,16 @@ const layout = useLayout()
 ### Базовый макет
 
 ```tsx
-import { Lucent, LucentHeader, LucentSidebar, LucentBody, LucentFooter } from "@scottwalker/lucent"
+import { Lucent } from "@scottwalker/lucent"
 
 function App() {
   return (
     <Lucent config={{}}>
-      <LucentHeader>
+      <Lucent.Header>
         <h1>Компания по доставке неприятностей</h1>
-      </LucentHeader>
+      </Lucent.Header>
 
-      <LucentSidebar>
+      <Lucent.Sidebar>
         <nav>
           <ul>
             <li>Панель управления</li>
@@ -250,18 +249,25 @@ function App() {
             <li>Настройки</li>
           </ul>
         </nav>
-      </LucentSidebar>
+      </Lucent.Sidebar>
 
-      <LucentBody>
+      <Lucent.Body>
         <div>
           <h2>Добро пожаловать в панель управления</h2>
           <p>Это основная область содержимого.</p>
         </div>
-      </LucentBody>
+      </Lucent.Body>
 
-      <LucentFooter>
+      <Lucent.Infobar>
+        <div>
+          <h3>Быстрая информация</h3>
+          <p>Дополнительная информационная панель</p>
+        </div>
+      </Lucent.Infobar>
+
+      <Lucent.Footer>
         <p>&copy; 2025 Компания по доставке неприятностей</p>
-      </LucentFooter>
+      </Lucent.Footer>
     </Lucent>
   )
 }
@@ -270,7 +276,7 @@ function App() {
 ### Расширенная конфигурация
 
 ```tsx
-import { Lucent, LucentHeader, LucentSidebar, LucentBody, LucentInfobar } from "@scottwalker/lucent"
+import { Lucent } from "@scottwalker/lucent"
 
 function App() {
   const config = {
@@ -290,24 +296,24 @@ function App() {
 
   return (
     <Lucent config={config}>
-      <LucentHeader>
+      <Lucent.Header>
         <div className="header-content">
           <h1>Расширенное приложение</h1>
           <ThemeToggle />
         </div>
-      </LucentHeader>
+      </Lucent.Header>
 
-      <LucentSidebar>
+      <Lucent.Sidebar>
         <Navigation />
-      </LucentSidebar>
+      </Lucent.Sidebar>
 
-      <LucentBody>
+      <Lucent.Body>
         <MainContent />
-      </LucentBody>
+      </Lucent.Body>
 
-      <LucentInfobar>
+      <Lucent.Infobar>
         <InfoPanel />
-      </LucentInfobar>
+      </Lucent.Infobar>
     </Lucent>
   )
 }
@@ -322,22 +328,26 @@ function ThemeToggle() {
 ### Адаптивный макет с элементами управления
 
 ```tsx
-import { Lucent, LucentHeader, LucentSidebar, LucentBody } from "@scottwalker/lucent"
+import { Lucent } from "@scottwalker/lucent"
 
 function App() {
   return (
     <Lucent config={{}}>
-      <LucentHeader>
+      <Lucent.Header>
         <LayoutControls />
-      </LucentHeader>
+      </Lucent.Header>
 
-      <LucentSidebar>
+      <Lucent.Sidebar>
         <SidebarContent />
-      </LucentSidebar>
+      </Lucent.Sidebar>
 
-      <LucentBody>
+      <Lucent.Body>
         <MainContent />
-      </LucentBody>
+      </Lucent.Body>
+
+      <Lucent.Infobar>
+        <InfoPanel />
+      </Lucent.Infobar>
     </Lucent>
   )
 }
@@ -349,6 +359,10 @@ function LayoutControls() {
     <div className="controls">
       <button onClick={layout.toggleSidebarCollapsedMode}>
         {layout.isSidebarCollapsed ? "Развернуть" : "Свернуть"} боковую панель
+      </button>
+
+      <button onClick={layout.toggleInfobarCollapsedMode}>
+        {layout.isInfobarCollapsed ? "Развернуть" : "Свернуть"} инфобар
       </button>
 
       <button onClick={layout.toggleThemeMode}>{layout.isThemeDark ? "Светлая" : "Темная"} тема</button>

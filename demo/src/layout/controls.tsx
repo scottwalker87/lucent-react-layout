@@ -1,4 +1,3 @@
-import { Button } from "../ui/button"
 import { InfobarCollapseTrigger } from "../ui/infobar-collapse-trigger"
 import { InfobarVisibleTrigger } from "../ui/infobar-visible-trigger"
 import { SidebarCollapseTrigger } from "../ui/sidebar-collapse-trigger"
@@ -7,7 +6,7 @@ import { FooterVisibleTrigger } from "../ui/footer-visible-trigger"
 import { HeaderVisibleTrigger } from "../ui/header-visible-trigger"
 import { ThemeToggle } from "../ui/theme-toggle"
 
-export const Controls = ({ onToggleInfobarContent }: { onToggleInfobarContent: () => void }) => {
+export const Controls = () => {
   return (
     <div className="controls">
       <HeaderVisibleTrigger />
@@ -20,7 +19,6 @@ export const Controls = ({ onToggleInfobarContent }: { onToggleInfobarContent: (
       <InfobarVisibleTrigger />
       <InfobarCollapseTrigger />
       <div className="controls-divider" />
-      <Button onClick={onToggleInfobarContent}>Toggle Infobar Content</Button>
       <div className="controls-divider" />
       <ThemeToggle />
     </div>

@@ -32,15 +32,16 @@ npm install @scottwalker/lucent
 ## Quick Start
 
 ```tsx
-import { Lucent, LucentHeader, LucentSidebar, LucentBody, LucentFooter } from "@scottwalker/lucent"
+import { Lucent } from "@scottwalker/lucent"
 
 function App() {
   return (
     <Lucent config={{}}>
-      <LucentHeader>Header Content</LucentHeader>
-      <LucentSidebar>Sidebar Content</LucentSidebar>
-      <LucentBody>Main Content</LucentBody>
-      <LucentFooter>Footer Content</LucentFooter>
+      <Lucent.Header>Header Content</Lucent.Header>
+      <Lucent.Sidebar>Sidebar Content</Lucent.Sidebar>
+      <Lucent.Body>Main Content</Lucent.Body>
+      <Lucent.Infobar>Info Panel</Lucent.Infobar>
+      <Lucent.Footer>Footer Content</Lucent.Footer>
     </Lucent>
   )
 }
@@ -199,7 +200,6 @@ const layout = useLayout()
 
 - `modes` - Current layout modes
 - `params` - Current layout parameters
-- `hasSlots` - Which layout components are rendered
 
 #### State Checks
 
@@ -216,7 +216,6 @@ const layout = useLayout()
 - `setMode(mode, value)` - Set a specific mode
 - `setParams(params)` - Update multiple parameters
 - `setParam(name, value)` - Update a single parameter
-- `setHasSlot(slot, value)` - Mark layout element state as rendered (or not rendered)
 
 #### Toggle Methods
 
@@ -233,16 +232,16 @@ const layout = useLayout()
 ### Basic Layout
 
 ```tsx
-import { Lucent, LucentHeader, LucentSidebar, LucentBody, LucentFooter } from "@scottwalker/lucent"
+import { Lucent } from "@scottwalker/lucent"
 
 function App() {
   return (
     <Lucent config={{}}>
-      <LucentHeader>
+      <Lucent.Header>
         <h1>Company for Delivering Troubles</h1>
-      </LucentHeader>
+      </Lucent.Header>
 
-      <LucentSidebar>
+      <Lucent.Sidebar>
         <nav>
           <ul>
             <li>Dashboard</li>
@@ -250,18 +249,25 @@ function App() {
             <li>Settings</li>
           </ul>
         </nav>
-      </LucentSidebar>
+      </Lucent.Sidebar>
 
-      <LucentBody>
+      <Lucent.Body>
         <div>
           <h2>Welcome to your dashboard</h2>
           <p>This is the main content area.</p>
         </div>
-      </LucentBody>
+      </Lucent.Body>
 
-      <LucentFooter>
+      <Lucent.Infobar>
+        <div>
+          <h3>Quick Info</h3>
+          <p>Additional information panel</p>
+        </div>
+      </Lucent.Infobar>
+
+      <Lucent.Footer>
         <p>&copy; 2025 Company for Delivering Troubles</p>
-      </LucentFooter>
+      </Lucent.Footer>
     </Lucent>
   )
 }
@@ -270,7 +276,7 @@ function App() {
 ### Advanced Configuration
 
 ```tsx
-import { Lucent, LucentHeader, LucentSidebar, LucentBody, LucentInfobar } from "@scottwalker/lucent"
+import { Lucent } from "@scottwalker/lucent"
 
 function App() {
   const config = {
@@ -290,24 +296,24 @@ function App() {
 
   return (
     <Lucent config={config}>
-      <LucentHeader>
+      <Lucent.Header>
         <div className="header-content">
           <h1>Advanced App</h1>
           <ThemeToggle />
         </div>
-      </LucentHeader>
+      </Lucent.Header>
 
-      <LucentSidebar>
+      <Lucent.Sidebar>
         <Navigation />
-      </LucentSidebar>
+      </Lucent.Sidebar>
 
-      <LucentBody>
+      <Lucent.Body>
         <MainContent />
-      </LucentBody>
+      </Lucent.Body>
 
-      <LucentInfobar>
+      <Lucent.Infobar>
         <InfoPanel />
-      </LucentInfobar>
+      </Lucent.Infobar>
     </Lucent>
   )
 }
@@ -322,22 +328,26 @@ function ThemeToggle() {
 ### Responsive Layout with Controls
 
 ```tsx
-import { Lucent, LucentHeader, LucentSidebar, LucentBody } from "@scottwalker/lucent"
+import { Lucent } from "@scottwalker/lucent"
 
 function App() {
   return (
     <Lucent config={{}}>
-      <LucentHeader>
+      <Lucent.Header>
         <LayoutControls />
-      </LucentHeader>
+      </Lucent.Header>
 
-      <LucentSidebar>
+      <Lucent.Sidebar>
         <SidebarContent />
-      </LucentSidebar>
+      </Lucent.Sidebar>
 
-      <LucentBody>
+      <Lucent.Body>
         <MainContent />
-      </LucentBody>
+      </Lucent.Body>
+
+      <Lucent.Infobar>
+        <InfoPanel />
+      </Lucent.Infobar>
     </Lucent>
   )
 }
@@ -349,6 +359,10 @@ function LayoutControls() {
     <div className="controls">
       <button onClick={layout.toggleSidebarCollapsedMode}>
         {layout.isSidebarCollapsed ? "Expand" : "Collapse"} Sidebar
+      </button>
+
+      <button onClick={layout.toggleInfobarCollapsedMode}>
+        {layout.isInfobarCollapsed ? "Expand" : "Collapse"} Infobar
       </button>
 
       <button onClick={layout.toggleThemeMode}>{layout.isThemeDark ? "Light" : "Dark"} Theme</button>

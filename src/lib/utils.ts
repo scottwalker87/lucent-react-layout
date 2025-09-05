@@ -5,8 +5,7 @@ import type {
   LayoutParams,
   LayoutNormalizedParams,
   LayoutModes,
-  LayoutNormalizedModes,
-  LayoutHasSlots
+  LayoutNormalizedModes
 } from "../types"
 import { THEME_MODE_LIGHT, HEADER_MODE_BASE, FOOTER_MODE_BASE, SIDEBAR_MODE_BASE, INFOBAR_MODE_BASE } from "./constants"
 import { CSSProperties } from "react"
@@ -79,13 +78,13 @@ export const normalizeParams = (params: LayoutParams): LayoutNormalizedParams =>
   params = params ?? {}
 
   return {
-    headerHeight: params.headerHeight ?? "3.125rem",
-    footerHeight: params.footerHeight ?? "3.125rem",
-    sidebarWidth: params.sidebarWidth ?? "15.625rem",
-    sidebarCollapsedWidth: params.sidebarCollapsedWidth ?? "3.125rem",
-    infobarWidth: params.infobarWidth ?? "15.625rem",
-    infobarCollapsedWidth: params.infobarCollapsedWidth ?? "3.125rem",
-    transitionDuration: params.transitionDuration ?? "0.15s"
+    headerHeight: params.headerHeight ?? "0rem",
+    footerHeight: params.footerHeight ?? "0rem",
+    sidebarWidth: params.sidebarWidth ?? "0rem",
+    sidebarCollapsedWidth: params.sidebarCollapsedWidth ?? "0rem",
+    infobarWidth: params.infobarWidth ?? "0rem",
+    infobarCollapsedWidth: params.infobarCollapsedWidth ?? "0rem",
+    transitionDuration: params.transitionDuration ?? "0.1s"
   }
 }
 
@@ -99,15 +98,8 @@ export const normalizeConfig = (config: LayoutConfig): LayoutNormalizedConfig =>
 
   const modes = normalizeModes(config.modes ?? {})
   const params = normalizeParams(config.params ?? {})
-  const hasSlots: LayoutHasSlots = {
-    header: false,
-    sidebar: false,
-    body: false,
-    footer: false,
-    infobar: false
-  }
 
-  return { modes, params, hasSlots }
+  return { modes, params }
 }
 
 /**
@@ -135,7 +127,6 @@ export const makeModeAttributes = (context: LayoutApi): Record<string, string> =
 export const calcStyles = (context: LayoutApi): CSSProperties => {
   const {
     params,
-    hasSlots,
     isHeaderHidden,
     isFooterHidden,
     isSidebarHidden,
@@ -145,10 +136,10 @@ export const calcStyles = (context: LayoutApi): CSSProperties => {
   } = context
 
   // Проверки видимости слотов макета
-  const hasHeader = hasSlots.header && !isHeaderHidden
-  const hasFooter = hasSlots.footer && !isFooterHidden
-  const hasSidebar = hasSlots.sidebar && !isSidebarHidden
-  const hasInfobar = hasSlots.infobar && !isInfobarHidden
+  const hasHeader = !isHeaderHidden
+  const hasFooter = !isFooterHidden
+  const hasSidebar = !isSidebarHidden
+  const hasInfobar = !isInfobarHidden
 
   /**
    * Рассчитать ширину сайдбара

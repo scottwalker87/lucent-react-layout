@@ -1,23 +1,14 @@
-import { ReactNode, useState } from "react"
-import {
-  Lucent,
-  LucentHeader,
-  LucentSidebar,
-  LucentBody,
-  LucentInfobar,
-  LucentFooter,
-  type LayoutConfig
-} from "@scottwalker/lucent"
-import { Sidebar } from "./sidebar"
+import { ReactNode } from "react"
+import { Lucent, type LayoutConfig } from "@scottwalker/lucent"
 import { Header } from "./header"
+import { Sidebar } from "./sidebar"
 import { Body } from "./body"
-import { Infobar } from "./infobar"
 import { Controls } from "./controls"
+import { Infobar } from "./infobar"
 import { Footer } from "./footer"
 import "./lucent.css"
 
 export const LucentLayout = ({ children }: { children?: ReactNode }) => {
-  const [infobarContent, setInfobarContent] = useState("Infobar content here...")
   const config: LayoutConfig = {
     modes: {
       theme: "light",
@@ -37,34 +28,28 @@ export const LucentLayout = ({ children }: { children?: ReactNode }) => {
     }
   }
 
-  const toggleInfobarContent = () => {
-    setInfobarContent(infobarContent ? "" : "Infobar content here...")
-  }
-
   return (
     <Lucent config={config} className="layout">
-      <LucentHeader className="header">
+      <Lucent.Header className="header">
         <Header />
-      </LucentHeader>
+      </Lucent.Header>
 
-      <LucentSidebar>
+      <Lucent.Sidebar>
         <Sidebar />
-      </LucentSidebar>
+      </Lucent.Sidebar>
 
-      <LucentBody className="body scrollable">
+      <Lucent.Body className="body scrollable">
         <Body>{children}</Body>
-        <Controls onToggleInfobarContent={toggleInfobarContent} />
-      </LucentBody>
+        <Controls />
+      </Lucent.Body>
 
-      {infobarContent && (
-        <LucentInfobar>
-          <Infobar>{infobarContent}</Infobar>
-        </LucentInfobar>
-      )}
+      <Lucent.Infobar>
+        <Infobar />
+      </Lucent.Infobar>
 
-      <LucentFooter className="footer">
+      <Lucent.Footer className="footer">
         <Footer />
-      </LucentFooter>
+      </Lucent.Footer>
     </Lucent>
   )
 }

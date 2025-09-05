@@ -8,10 +8,8 @@ import type {
   LayoutParam,
   LayoutParamValue,
   LayoutParams,
-  LayoutHasSlots,
-  LayoutHasSlot,
   ProviderComponent
-} from "../types"
+} from "./types"
 import {
   THEME_MODE_LIGHT,
   THEME_MODE_DARK,
@@ -25,21 +23,20 @@ import {
   INFOBAR_MODE_HIDDEN,
   INFOBAR_MODE_COLLAPSED,
   SIDEBAR_MODE_BASE
-} from "../lib/constants"
-import { LayoutContext } from "../lib/context"
-import { normalizeConfig } from "../lib/utils"
-import { Container } from "../ui"
+} from "./lib/constants"
+import { LayoutContext } from "./lib/context"
+import { normalizeConfig } from "./lib/utils"
+import { Container, Header, Sidebar, Body, Infobar, Footer } from "./ui"
 
 /**
  * Провайдер макета
  * @namespace Lucent.Structure.Provider
  */
-export const LayoutProvider: ProviderComponent = ({ children, config, ...props }) => {
+const LayoutProvider: ProviderComponent = ({ children, config, ...props }) => {
   const startedConfig = normalizeConfig(config)
 
   const [modes, setStateModes] = useState<LayoutNormalizedModes>(startedConfig.modes)
   const [params, setStateParams] = useState<LayoutNormalizedParams>(startedConfig.params)
-  const [hasSlots, setHasSlots] = useState<LayoutHasSlots>(startedConfig.hasSlots)
 
   // Проверки режимов макета
   const isThemeDark = modes.theme === THEME_MODE_DARK
@@ -84,28 +81,6 @@ export const LayoutProvider: ProviderComponent = ({ children, config, ...props }
       setStateParams(prev => ({ ...prev, [name]: value }))
     },
     [setStateParams]
-  )
-
-  /**
-   * Пометить слот как смонтированный
-   * @param {LayoutHasSlot} slot - название слота
-   */
-  const setHasSlot = useCallback(
-    (slot: LayoutHasSlot) => {
-      setHasSlots(prev => ({ ...prev, [slot]: true }))
-    },
-    [setHasSlots]
-  )
-
-  /**
-   * Пометить слот как размонтированный
-   * @param {LayoutHasSlot} slot - название слота
-   */
-  const unsetHasSlot = useCallback(
-    (slot: LayoutHasSlot) => {
-      setHasSlots(prev => ({ ...prev, [slot]: false }))
-    },
-    [setHasSlots]
   )
 
   /**
@@ -164,7 +139,6 @@ export const LayoutProvider: ProviderComponent = ({ children, config, ...props }
   const api: LayoutApi = {
     modes,
     params,
-    hasSlots,
 
     isThemeDark,
     isHeaderHidden,
@@ -177,8 +151,6 @@ export const LayoutProvider: ProviderComponent = ({ children, config, ...props }
     setMode,
     setParams,
     setParam,
-    setHasSlot,
-    unsetHasSlot,
 
     toggleThemeMode,
     toggleHeaderVisibleMode,
@@ -195,3 +167,11 @@ export const LayoutProvider: ProviderComponent = ({ children, config, ...props }
     </LayoutContext.Provider>
   )
 }
+
+LayoutProvider.Header = Header
+LayoutProvider.Sidebar = Sidebar
+LayoutProvider.Body = Body
+LayoutProvider.Infobar = Infobar
+LayoutProvider.Footer = Footer
+
+export { LayoutProvider }

@@ -153,18 +153,6 @@ export type LayoutParam = keyof LayoutParams
 export type LayoutParamValue = LayoutParams[LayoutParam] | null
 
 /**
- * Название слота
- * @namespace Lucent.LayoutHasSlot
- */
-export type LayoutHasSlot = keyof LayoutHasSlots
-
-/**
- * Значение инициализации слота
- * @namespace Lucent.LayoutHasSlotValue
- */
-export type LayoutHasSlotValue = LayoutHasSlots[LayoutHasSlot]
-
-/**
  * Конфигурация макета
  * @namespace Lucent.LayoutConfig
  */
@@ -180,7 +168,6 @@ export type LayoutConfig = {
 export type LayoutNormalizedConfig = {
   modes: LayoutNormalizedModes
   params: LayoutNormalizedParams
-  hasSlots: LayoutHasSlots
 }
 
 /**
@@ -236,23 +223,16 @@ export type LayoutNormalizedParams = {
 }
 
 /**
- * Карта инициализированных слотов макета
- * @namespace Lucent.LayoutHasSlots
- */
-export type LayoutHasSlots = {
-  header: boolean
-  sidebar: boolean
-  body: boolean
-  infobar: boolean
-  footer: boolean
-}
-
-/**
  * Тип компонента провайдера
  * @namespace Lucent.LayoutProviderComponent
  */
 export type ProviderComponent = {
   (props: ProviderProps): JSX.Element
+  Header: HeaderComponent
+  Sidebar: SidebarComponent
+  Body: BodyComponent
+  Infobar: InfobarComponent
+  Footer: FooterComponent
 }
 
 /**
@@ -270,12 +250,10 @@ export type ProviderProps = ComponentProps<"div"> & {
  *
  * @property {LayoutNormalizedModes} modes - режимы макета
  * @property {LayoutNormalizedParams} params - параметры макета
- * @property {LayoutHasSlots} hasSlots - карта инициализированных слотов макета
  *
  * @property {function} setMode - установить режим
  * @property {function} setParams - установить параметры
  * @property {function} setParam - установить параметр
- * @property {function} setHasSlot - установить карту инициализированных слотов
  *
  * @property {function} isThemeDark - проверить, является ли тема темной
  * @property {function} isHeaderHidden - проверить, является ли шапка скрытой
@@ -296,7 +274,6 @@ export type ProviderProps = ComponentProps<"div"> & {
 export type LayoutApi = {
   modes: LayoutNormalizedModes
   params: LayoutNormalizedParams
-  hasSlots: LayoutHasSlots
 
   // Проверки режимов
   isThemeDark: boolean
@@ -311,8 +288,6 @@ export type LayoutApi = {
   setMode: (mode: LayoutMode, value: LayoutModeValue) => void
   setParams: (params: LayoutParams) => void
   setParam: (name: LayoutParam, value: LayoutParamValue) => void
-  setHasSlot: (slot: LayoutHasSlot) => void
-  unsetHasSlot: (slot: LayoutHasSlot) => void
 
   // Переключатели режимов
   toggleThemeMode: () => void

@@ -2,7 +2,7 @@ import { useLayout } from "@scottwalker/lucent"
 import { ReactNode } from "react"
 
 export const Body = ({ children }: { children: ReactNode | ReactNode[] }) => {
-  const { hasSlots, modes, params } = useLayout()
+  const { modes, params } = useLayout()
 
   return (
     <div
@@ -25,7 +25,7 @@ export const Body = ({ children }: { children: ReactNode | ReactNode[] }) => {
           overflow: "auto"
         }}
       >
-        {JSON.stringify({ params, modes, hasSlots }, null, 2)}
+        {JSON.stringify({ params, modes }, null, 2)}
       </pre>
       <div>{children}</div>
     </div>

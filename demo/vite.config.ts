@@ -10,7 +10,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      // "@scottwalker/lucent": path.resolve(__dirname, "../src")
+      "@scottwalker/lucent": path.resolve(__dirname, "../src")
     }
   },
   build: {
